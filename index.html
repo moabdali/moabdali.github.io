@@ -4,31 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0">
     <title>Moe's Websites</title>
-    <div>
-        
-        <div>
-            <a href="hangman.html">Hangman Extreme</a>
-        </div>
-        
-        <div>
-            This is hangman made extreme.  Unlike regular hangman, you: <br>
-            <li>
-                <ul>
-                    Must guess 5 words simultaneously
-                </ul>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
 
-                <ul>
-                    Get only 3 lives
-                </ul>
+        .container {
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-                <ul>
-                    You aren't shown the length of any of the words.  You are shown the number of letters between the first and last guessed letters.
-                </ul>
-            </li>
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .link-button {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .link-button:hover {
+            background-color: #2980b9;
+        }
+
+        .description {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Moe's Websites</h1>
+
+        <a href="hangman.html" class="link-button">Hangman Extreme</a>
+
+        <div class="description">
+            <p>This is hangman made extreme. Unlike regular hangman, you:</p>
+            <ul>
+                <li>Must guess 5 words simultaneously</li>
+                <li>Get only 3 lives</li>
+                <li>Are not shown the length of any of the words. You only see the number of letters between the first and last guessed letters.</li>
+            </ul>
         </div>
-        
     </div>
-    
 
 </body>
 </html>
