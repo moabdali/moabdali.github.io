@@ -57,9 +57,12 @@
         }
 
         .word-display {
-            font-size: calc(1rem + 0.8vw); 
+            font-size: calc(1rem + 0.8vw);
             letter-spacing: 1px;
             text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .hidden-underscore {
@@ -137,11 +140,28 @@
             font-size: calc(0.9rem + 0.6vw);
             color: #333;
             margin-top: 5px;
-            display: none; /* Initially hidden */
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out; /* Fade-in animation */
+        }
+
+        .definition-item.bounce {
+            animation: bounce 1s ease; /* Bounce animation on reveal */
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .definition-item.bounce-visible {
+            display: block;
+            opacity: 1;
         }
 
         .definition-item b {
-            color: #3498db; /* Highlight word in definition */
+            color: #3498db;
         }
     </style>
 </head>
@@ -228,6 +248,7 @@
                 const defDiv = document.getElementById(`definition-${i}`);
                 defDiv.textContent = "";
                 defDiv.style.display = "none";
+                defDiv.classList.remove("bounce-visible", "bounce");
             }
         }
 
@@ -295,6 +316,7 @@
             const defDiv = document.getElementById(`definition-${index}`);
             defDiv.innerHTML = `<b>${word}</b>: ${definition}`;
             defDiv.style.display = "block";
+            defDiv.classList.add("bounce", "bounce-visible"); // Apply animation classes
         }
 
         function guessLetter(letter, button) {
