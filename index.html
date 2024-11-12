@@ -107,7 +107,7 @@
             <div id="words-container"></div>
         </div>
         
-        <p class="message" id="game-message">Click a letter to start guessing!</p>
+        <p class="message" id="game-message">Please wait, generating random words...</p>
         <div id="letter-buttons"></div>
         <button id="new-game">New Game</button>
         <p class="message">Lives remaining: <span id="lives-count">9</span></p>
@@ -122,9 +122,10 @@
         let lives;
         let incorrectLetters = [];
         let gameEnded = false;
-
+		
         // Fetch words with definitions
         async function fetchWordsWithDefinitions() {
+			document.getElementById("game-message").textContent = "Please wait, looking up words...";
             selectedWords = [];
             while (selectedWords.length < maxWords) {
                 const word = await fetchRandomWord();
@@ -142,6 +143,7 @@
                 }
             }
             initializeGame();
+			document.getElementById("game-message").textContent = "Click a letter to start guessing!";
         }
 
         // Fetch a single random word from the Heroku Random Word API
