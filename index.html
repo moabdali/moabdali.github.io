@@ -15,33 +15,38 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
             text-align: center;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 700px;
             background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 2.2em;
+            margin-bottom: 30px;
             color: #3498db;
+        }
+
+        .section {
+            margin-bottom: 40px;
         }
 
         .link-button {
             display: inline-block;
-            margin: 10px 0;
-            padding: 10px 20px;
+            margin: 15px 0;
+            padding: 12px 25px;
             background-color: #3498db;
             color: #fff;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
+            font-size: 1.1em;
             transition: background-color 0.3s;
         }
 
@@ -50,8 +55,17 @@
         }
 
         .description {
-            margin-top: 20px;
+            margin-top: 15px;
             text-align: left;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .subheading {
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+            font-size: 1.1em;
         }
 
         ul {
@@ -61,8 +75,14 @@
         }
 
         li {
-            margin-bottom: 10px;
-            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 40px 0;
         }
     </style>
 </head>
@@ -70,37 +90,47 @@
 
     <div class="container">
         <h1>Welcome to Moe's Websites</h1>
-        <div>
+        
+        <!-- Hangman Extreme Section -->
+        <div class="section">
             <a href="hangman.html" class="link-button">Hangman Extreme</a>
     
             <div class="description">
-                <p>This is hangman made extreme. Unlike regular hangman, you:</p>
+                <p><strong>Hangman Extreme</strong> brings a challenging twist to the classic hangman game. In this version:</p>
                 <ul>
-                    <li>Must guess 5 words simultaneously</li>
-                    <li>Get only 3 lives</li>
-                    <li>Are not shown the length of any of the words. You only see the number of letters between the first and last guessed letters.</li>
+                    <li>Guess 5 words simultaneously</li>
+                    <li>Only 3 lives available</li>
+                    <li>Word lengths are hidden, but you’ll see the number of letters between the first and last correctly guessed letters</li>
                 </ul>
-                <p>Things of interest:</p>
+                
+                <p class="subheading">Highlights:</p>
                 <ul>
-                    <li>Written purely in JavaScript, CSS, HTML</li>
-                    <li>Uses Heroku API to find random words to guess (keeps the game fresh!)</li>
-                    <li>Uses DictionaryAPI to show definitions of words</li>
+                    <li>Built with JavaScript, CSS, and HTML</li>
+                    <li>Uses the Heroku API for random word selection, keeping the game unpredictable</li>
+                    <li>Integrated with DictionaryAPI to display definitions for guessed words</li>
                 </ul>
             </div>
         </div>
 
-        <div>
-            <a href="https://www.moabdali1.pythonanwhere.com" class="link-button">Games Shelves</a>
+        <hr>
+
+        <!-- Games Shelves Section -->
+        <div class="section">
+            <a href="https://www.moabdali1.pythonanywhere.com" class="link-button">Games Shelves</a>
     
             <div class="description">
-                    This webpage helps you organize and search for board games in your collection by attributes like name, location, and categories.<br>
-                    You can scan or type in barcodes to find games quickly.<br>
-                    Switch between compact and expanded views for more insights, and use tooltips to learn more about each column.               
-                <p>Things of interest:</p>
+                <p><strong>Games Shelves</strong> helps you effortlessly organize and search your board game collection. Find games based on name, location, or category and streamline your inventory:</p>
                 <ul>
-                    <li>Uses JavaScript, CSS, HTML</li>
-                    <li>Uses SQLite</li>
-                    <li>Uses Python and Flask to provide a backend</li>
+                    <li>Quickly locate games by scanning or typing barcodes</li>
+                    <li>Switch between compact and detailed views for additional information</li>
+                    <li>Hover over columns for quick tooltips with helpful information</li>
+                </ul>
+
+                <p class="subheading">Highlights:</p>
+                <ul>
+                    <li>Built with JavaScript, CSS, and HTML</li>
+                    <li>Uses SQLite for efficient data storage</li>
+                    <li>Python and Flask backend powers the web application</li>
                 </ul>
             </div>
         </div>
