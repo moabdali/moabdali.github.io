@@ -116,7 +116,7 @@
         }
 
         #new-game {
-            margin: 15px;
+            margin: 15px auto; /* Center the button */
             padding: 8px;
             font-size: calc(0.8em + 1vw);
             background-color: #2ecc71;
@@ -125,6 +125,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.2s;
+            display: none; /* Initially hidden */
         }
 
         #new-game:hover {
@@ -163,6 +164,19 @@
         .definition-item b {
             color: #3498db;
         }
+
+        /* Prominent victory/lose message */
+        #victory-message, #lose-message {
+            font-size: calc(2rem + 1vw);
+            font-weight: bold;
+            color: #2ecc71;
+            display: none; /* Hidden until game is won/lost */
+            margin-top: 20px;
+        }
+
+        #lose-message {
+            color: #e74c3c; /* Red for lose message */
+        }
     </style>
 </head>
 <body>
@@ -174,6 +188,8 @@
         <p class="message" id="game-message">Please wait, generating random words. This can take about 10 seconds...</p>
         <div id="letter-buttons"></div>
         <button id="new-game">New Game</button>
+        <p id="victory-message">You Win! All words revealed!</p>
+        <p id="lose-message"></p> <!-- Lose message for the "You Lose" text -->
         <p class="message">Lives remaining: <span id="lives-count">9</span></p>
         <p class="message">Incorrect letters: <span id="incorrect-list"></span></p>
 
@@ -197,31 +213,50 @@
 
         async function fetchWordsWithDefinitions() {
             document.getElementById("game-message").textContent = "Please wait, looking up words. This can take about 10 seconds...";
+            document.getElementById("victory-message").style.display = "none";
+            document.getElementById("lose-message").style.display = "none";
+            document.getElementById("new-game").style.display = "none"; // Hide the New Game button after clicking
+
             resetDefinitions();
             selectedWords = [];
-            while (selectedWords.length < maxWords) {
-                const word = await fetchRandomWord();
+
+            // Fetch 20 words in one API call
+            const words = await fetchRandomWords();
+
+            for (let word of words) {
+                if (word.length > 12) continue; // Skip words longer than 12 letters
+
                 const definition = await fetchDefinition(word);
                 if (definition) {
+                    const offset = getRandomOffset(word.length);
                     selectedWords.push({
                         word: word,
                         display: Array(displayLength).fill("\u00A0"),
                         solved: false,
                         revealedStart: -1,
                         revealedEnd: -1,
-                        offset: Math.floor(Math.random() * (displayLength - word.length + 1)),
-                        definition: definition // Save the definition for each word
+                        offset: offset,
+                        definition: definition
                     });
+
+                    if (selectedWords.length === maxWords) break; // Stop once we have the required number of words
                 }
             }
+
             initializeGame();
             document.getElementById("game-message").textContent = "Click a letter to start guessing!";
+            document.getElementById("new-game").style.display = "block"; // Show New Game button after setup
         }
 
-        async function fetchRandomWord() {
-            const response = await fetch('https://random-word-api.herokuapp.com/word?number=1');
+        function getRandomOffset(wordLength) {
+            const maxOffset = displayLength - wordLength - 1;
+            return Math.floor(Math.random() * (maxOffset - 1)) + 1;
+        }
+
+        async function fetchRandomWords() {
+            const response = await fetch('https://random-word-api.herokuapp.com/word?number=20');
             const words = await response.json();
-            return words[0];
+            return words;
         }
 
         async function fetchDefinition(word) {
@@ -301,7 +336,7 @@
 
                 if (obj.solved || gameEnded) {
                     wordDiv.classList.add("guessed-word");
-                    wordDiv.title = obj.definition; // Use preloaded definition
+                    wordDiv.title = obj.definition;
                     if (obj.solved) {
                         showDefinition(index, obj.word, obj.definition);
                     }
@@ -316,7 +351,7 @@
             const defDiv = document.getElementById(`definition-${index}`);
             defDiv.innerHTML = `<b>${word}</b>: ${definition}`;
             defDiv.style.display = "block";
-            defDiv.classList.add("bounce", "bounce-visible"); // Apply animation classes
+            defDiv.classList.add("bounce", "bounce-visible");
         }
 
         function guessLetter(letter, button) {
@@ -363,11 +398,12 @@
         function checkGameStatus() {
             const allWordsSolved = selectedWords.every(obj => obj.solved);
             if (allWordsSolved) {
-                document.getElementById("game-message").textContent = "You Win! All words revealed!";
+                document.getElementById("victory-message").style.display = "block";
                 disableAllButtons();
             } else if (lives <= 0) {
-                document.getElementById("game-message").textContent = "You Lose! The words were: " +
+                document.getElementById("lose-message").textContent = "You Lose! The words were: " +
                     selectedWords.map(obj => obj.word).join(", ");
+                document.getElementById("lose-message").style.display = "block";
                 disableAllButtons();
                 gameEnded = true;
                 revealAllWords();
@@ -377,7 +413,7 @@
 
         function revealAllWords() {
             selectedWords.forEach((obj, index) => {
-                showDefinition(index, obj.word, obj.definition); // Reveal all definitions
+                showDefinition(index, obj.word, obj.definition);
                 for (let i = 0; i < obj.word.length; i++) {
                     const position = obj.offset + i;
                     if (obj.display[position] === "\u00A0") {
