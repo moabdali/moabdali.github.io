@@ -333,7 +333,7 @@
             selectedWords.forEach((obj, index) => {
                 const wordDiv = document.getElementById(`word-${index}`);
                 wordDiv.innerHTML = getDisplayWord(obj);
-
+                
                 if (obj.solved || gameEnded) {
                     wordDiv.classList.add("guessed-word");
                     wordDiv.title = obj.definition;
@@ -390,7 +390,8 @@
                     button.classList.add("incorrect");
                 }
             }
-
+            // Force immediate DOM update
+    button.offsetHeight; // Trigger reflow to ensure styles are applied immediately
             updateDisplay();
             checkGameStatus();
         }
