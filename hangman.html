@@ -389,24 +389,11 @@
                     lives--;
                     button.classList.add("incorrect");
                 }
-
-            
             }
             // Force immediate DOM update
     button.offsetHeight; // Trigger reflow to ensure styles are applied immediately
-             // Update game state after the visual feedback
-    setTimeout(() => {
-        if (!found) {
-            incorrectLetters.push(letter);
-            lives--;
-        }
-        updateDisplay();
-        checkGameStatus();
-    }, 100); // Optional delay for animation/feedback
             updateDisplay();
             checkGameStatus();
-
-        
         }
 
         function checkGameStatus() {
