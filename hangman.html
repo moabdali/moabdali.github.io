@@ -419,15 +419,16 @@
             });
 			
 			
-			// Update the button style based on the guess result
-			if (found) {
-				button.classList.add("correct");
-			} else {
-				button.classList.add("incorrect");
-				incorrectLetters.push(letter);
-				lives--;
-			}
-			
+            // Update the button style based on the guess result
+            if (found) {
+		button.classList.add("correct");
+            } else {
+		button.classList.add("incorrect");
+		incorrectLetters.push(letter);
+		lives--;
+            }
+
+            button.offsetHeight; // cheat to update button instantly
             updateDisplay();
             checkGameStatus();
         }
