@@ -93,16 +93,6 @@
             background-color: #2980b9;
         }
 
-        .correct {
-            background-color: green;
-            color: white;
-        }
-        
-        .incorrect {
-            background-color: red;
-            color: white;
-        }
-
         .disabled {
             background-color: #ddd;
             cursor: not-allowed;
@@ -365,38 +355,58 @@
         }
 
         function guessLetter(letter, button) {
-            button.disabled = true; // Disable the button
+            button.disabled = true;
+            button.classList.add("disabled");
             let found = false;
-        
-            // Check if the letter exists in any of the words
+
             selectedWords.forEach((obj) => {
                 if (!obj.solved) {
                     const word = obj.word;
-                    if (word.includes(letter)) {
+                    const display = obj.display;
+                    const firstMatch = word.indexOf(letter);
+                    const lastMatch = word.lastIndexOf(letter);
+
+                    if (firstMatch !== -1) {
                         found = true;
+                        obj.revealedStart = obj.revealedStart === -1 ? firstMatch : Math.min(obj.revealedStart, firstMatch);
+                        obj.revealedEnd = Math.max(obj.revealedEnd, lastMatch);
+
+                        for (let i = 0; i < word.length; i++) {
+                            if (word[i] === letter) {
+                                display[obj.offset + i] = letter;
+                            }
+                        }
+
+                        const allLettersGuessed = word.split("").every((char, idx) => display[obj.offset + idx] === char);
+                        if (allLettersGuessed) obj.solved = true;
                     }
                 }
             });
-        
-            // Update button styles immediately
-            if (found) {
-                button.classList.add("correct"); // Add a class for correct guess
-            } else {
-                button.classList.add("incorrect"); // Add a class for incorrect guess
-            }
-        
-            // Force immediate DOM update
-            button.offsetHeight; // Trigger reflow to ensure styles are applied immediately
-        
-            // Update game state after the visual feedback
-            setTimeout(() => {
-                if (!found) {
+
+            if (!found) {
+                if (!incorrectLetters.includes(letter)) {
                     incorrectLetters.push(letter);
                     lives--;
+                    button.classList.add("incorrect");
                 }
-                updateDisplay();
-                checkGameStatus();
-            }, 100); // Optional delay for animation/feedback
+
+            
+            }
+            // Force immediate DOM update
+    button.offsetHeight; // Trigger reflow to ensure styles are applied immediately
+             // Update game state after the visual feedback
+    setTimeout(() => {
+        if (!found) {
+            incorrectLetters.push(letter);
+            lives--;
+        }
+        updateDisplay();
+        checkGameStatus();
+    }, 100); // Optional delay for animation/feedback
+            updateDisplay();
+            checkGameStatus();
+
+        
         }
 
         function checkGameStatus() {
