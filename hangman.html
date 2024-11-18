@@ -428,8 +428,14 @@
 		lives--;
             }
 
-            button.offsetHeight; // cheat to update button instantly
-            updateDisplay();
+             // Force the DOM to process the style change
+	    requestAnimationFrame(() => {
+	        button.classList.add("disabled"); // Add the disabled class after processing
+	        updateDisplay();
+	        checkGameStatus();
+	    });
+	    
+	    updateDisplay();
             checkGameStatus();
         }
 
