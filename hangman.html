@@ -390,54 +390,53 @@
         }
 
         function guessLetter(letter, button) {
-            button.disabled = true;
-            button.classList.add("disabled");
-            let found = false;
-
-            selectedWords.forEach((obj) => {
-                if (!obj.solved) {
-                    const word = obj.word;
-                    const display = obj.display;
-                    const firstMatch = word.indexOf(letter);
-                    const lastMatch = word.lastIndexOf(letter);
-
-                    if (firstMatch !== -1) {
-                        found = true;
-                        obj.revealedStart = obj.revealedStart === -1 ? firstMatch : Math.min(obj.revealedStart, firstMatch);
-                        obj.revealedEnd = Math.max(obj.revealedEnd, lastMatch);
-
-                        for (let i = 0; i < word.length; i++) {
-                            if (word[i] === letter) {
-                                display[obj.offset + i] = letter;
-                            }
-                        }
-
-                        const allLettersGuessed = word.split("").every((char, idx) => display[obj.offset + idx] === char);
-                        if (allLettersGuessed) obj.solved = true;
-                    }
-                }
-            });
-			
-			
-            // Update the button style based on the guess result
-            if (found) {
-		button.classList.add("correct");
-            } else {
-		button.classList.add("incorrect");
-		incorrectLetters.push(letter);
-		lives--;
-            }
-
-             // Force the DOM to process the style change
+	    if (button.disabled) return; // Skip if the button is already disabled
+	
+	    button.disabled = true; // Disable the button
+	
+	    // Add the appropriate class for the guess result
+	    let found = false;
+	    selectedWords.forEach((obj) => {
+	        if (!obj.solved) {
+	            const word = obj.word;
+	            if (word.includes(letter)) {
+	                found = true;
+	
+	                // Reveal the letter in the word display
+	                const firstMatch = word.indexOf(letter);
+	                const lastMatch = word.lastIndexOf(letter);
+	                obj.revealedStart = obj.revealedStart === -1 ? firstMatch : Math.min(obj.revealedStart, firstMatch);
+	                obj.revealedEnd = Math.max(obj.revealedEnd, lastMatch);
+	
+	                for (let i = 0; i < word.length; i++) {
+	                    if (word[i] === letter) {
+	                        obj.display[obj.offset + i] = letter;
+	                    }
+	                }
+	
+	                // Check if the whole word is solved
+	                const allLettersGuessed = word.split("").every((char, idx) => obj.display[obj.offset + idx] === char);
+	                if (allLettersGuessed) obj.solved = true;
+	            }
+	        }
+	    });
+	
+	    // Apply the visual state update
+	    if (found) {
+	        button.classList.add("correct");
+	    } else {
+	        button.classList.add("incorrect");
+	        incorrectLetters.push(letter);
+	        lives--;
+	    }
+	
+	    // Force the DOM to process the style change
 	    requestAnimationFrame(() => {
 	        button.classList.add("disabled"); // Add the disabled class after processing
 	        updateDisplay();
 	        checkGameStatus();
 	    });
-	    
-	    updateDisplay();
-            checkGameStatus();
-        }
+	}
 
         function checkGameStatus() {
             const allWordsSolved = selectedWords.every(obj => obj.solved);
