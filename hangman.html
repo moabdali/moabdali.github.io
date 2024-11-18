@@ -76,6 +76,16 @@
         .missing-letter {
             color: red;
         }
+		
+		.button.correct {
+			background-color: green;
+			cursor: default;
+		}
+
+		.button.incorrect {
+			background-color: red;
+			cursor: default;
+		}
 
         .button {
             padding: 8px;
@@ -90,8 +100,18 @@
         }
 
         .button:hover {
-            background-color: #2980b9;
-        }
+			background-color: #2980b9; /* Hover color for active buttons */
+		}
+
+		.button:focus {
+			outline: none; /* Remove focus outline on mobile */
+		}
+
+		.button.disabled {
+			background-color: #ddd;
+			cursor: not-allowed;
+			pointer-events: none; /* Disable all interactions for disabled buttons */
+		}
 
         .button.correct {
             background-color: green;
@@ -397,24 +417,17 @@
                     }
                 }
             });
-
-            if (!found) {
-                if (!incorrectLetters.includes(letter)) {
-                    incorrectLetters.push(letter);
-                    lives--;
-                    button.classList.add("incorrect");
-                }
-            }
-            // Update button state
-            if (found) {
-                button.classList.add("correct", "disabled");
-            } else {
-                button.classList.add("incorrect", "disabled");
-            }
-
-    // Remove hover effect
-    button.classList.add("disabled");
-    button.style.pointerEvents = "none"; // Completely disable interaction
+			
+			
+			// Update the button style based on the guess result
+			if (found) {
+				button.classList.add("correct");
+			} else {
+				button.classList.add("incorrect");
+				incorrectLetters.push(letter);
+				lives--;
+			}
+			
             updateDisplay();
             checkGameStatus();
         }
