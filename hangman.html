@@ -233,10 +233,10 @@
 
     <script>
         const maxWords = 5;
-        const livesPerWord = [9, 7, 5, 3];
+        /* const livesPerWord = [9, 7, 5, 3]; variable lives future feature; hardcoding for now */
         const displayLength = 20;
         let selectedWords = [];
-        let lives;
+        let lives = 3;
         let incorrectLetters = [];
         let gameEnded = false;
 
@@ -300,7 +300,7 @@
 
         function initializeGame() {
             gameEnded = false;
-            lives = livesPerWord[Math.min(selectedWords.length - 1, livesPerWord.length - 1)];
+            /* lives = livesPerWord[Math.min(selectedWords.length - 1, livesPerWord.length - 1)]; Future feature. */
             incorrectLetters = [];
             setupLabels();
             updateDisplay();
