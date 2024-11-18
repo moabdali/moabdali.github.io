@@ -93,6 +93,21 @@
             background-color: #2980b9;
         }
 
+        .button.correct {
+            background-color: green;
+            cursor: default;
+        }
+        
+        .button.incorrect {
+            background-color: red;
+            cursor: default;
+        }
+        
+        .button.disabled:hover {
+            background-color: inherit; /* Remove hover for disabled buttons */
+            cursor: not-allowed;
+        }
+
         .disabled {
             background-color: #ddd;
             cursor: not-allowed;
@@ -390,8 +405,16 @@
                     button.classList.add("incorrect");
                 }
             }
-            // Force immediate DOM update
-    button.offsetHeight; // Trigger reflow to ensure styles are applied immediately
+            // Update button state
+            if (found) {
+                button.classList.add("correct", "disabled");
+            } else {
+                button.classList.add("incorrect", "disabled");
+            }
+
+    // Remove hover effect
+    button.classList.add("disabled");
+    button.style.pointerEvents = "none"; // Completely disable interaction
             updateDisplay();
             checkGameStatus();
         }
