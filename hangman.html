@@ -88,45 +88,39 @@
 		}
 
         .button {
-            padding: 8px;
-            margin: 2px;
-            font-size: calc(0.9rem + 1vw);
-            cursor: pointer;
-            background-color: #3498db;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.2s;
-        }
-
-        .button:hover {
-			background-color: #2980b9; /* Hover color for active buttons */
-		}
-
-		.button:focus {
-			outline: none; /* Remove focus outline on mobile */
-		}
-
-		.button.disabled {
-			background-color: #ddd;
-			cursor: not-allowed;
-			pointer-events: none; /* Disable all interactions for disabled buttons */
-		}
-
-        .button.correct {
-            background-color: green;
-            cursor: default;
-        }
-        
-        .button.incorrect {
-            background-color: red;
-            cursor: default;
-        }
-        
-        .button.disabled:hover {
-            background-color: inherit; /* Remove hover for disabled buttons */
-            cursor: not-allowed;
-        }
+	    padding: 8px;
+	    margin: 2px;
+	    font-size: calc(0.9rem + 1vw);
+	    cursor: pointer;
+	    background-color: #3498db;
+	    color: white;
+	    border: none;
+	    border-radius: 5px;
+	    transition: background-color 0.2s ease; /* Smooth transition for color changes */
+	    user-select: none; /* Prevent text selection on mobile */
+	}
+	
+	.button:hover {
+	    background-color: inherit; /* Disable hover effect */
+	}
+	
+	.button.correct {
+	    background-color: green;
+	    color: white;
+	    cursor: default;
+	}
+	
+	.button.incorrect {
+	    background-color: red;
+	    color: white;
+	    cursor: default;
+	}
+	
+	.button.disabled {
+	    background-color: #ddd;
+	    cursor: not-allowed;
+	    pointer-events: none; /* Disable further interaction */
+	}
 
         .disabled {
             background-color: #ddd;
@@ -390,12 +384,13 @@
         }
 
         function guessLetter(letter, button) {
-	    if (button.disabled) return; // Skip if the button is already disabled
+	    if (button.disabled) return; // Skip if already disabled
 	
-	    button.disabled = true; // Disable the button
+	    button.disabled = true; // Disable the button immediately
 	
-	    // Add the appropriate class for the guess result
 	    let found = false;
+	
+	    // Check if the letter exists in any word
 	    selectedWords.forEach((obj) => {
 	        if (!obj.solved) {
 	            const word = obj.word;
@@ -421,7 +416,7 @@
 	        }
 	    });
 	
-	    // Apply the visual state update
+	    // Update the button state based on whether the letter was found
 	    if (found) {
 	        button.classList.add("correct");
 	    } else {
@@ -430,12 +425,8 @@
 	        lives--;
 	    }
 	
-	    // Force the DOM to process the style change
-	    requestAnimationFrame(() => {
-	        button.classList.add("disabled"); // Add the disabled class after processing
-	        updateDisplay();
-	        checkGameStatus();
-	    });
+	    updateDisplay();
+	    checkGameStatus();
 	}
 
         function checkGameStatus() {
