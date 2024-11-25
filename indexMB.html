@@ -167,10 +167,15 @@
       text-align: center;
       padding: 1rem 0;
     }
+	
+	html {
+      scroll-behavior: smooth;
+    }
   </style>
 </head>
 <body>
   <div id="header-placeholder"></div>
+	
 	
 	<script>
 		fetch('/header.html') // Absolute path starting from the root
@@ -178,7 +183,7 @@
 	  .then(data => {
 		document.getElementById('header-placeholder').innerHTML = data;
 	  });
-  </script>
+	</script>
   
   <main>
     <section id="hero">
