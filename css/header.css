@@ -1,36 +1,49 @@
-/* General Styles for Header */
+/* General Header Styles */
 header {
-  background: #fdf5e6; /* Neutral beige background */
+  background: #f4f4f4; /* Light Gray for better readability */
+  color: #333; /* Dark Gray text for contrast */
   padding: 1rem 0;
 }
 
 header .container {
   display: flex;
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  flex-wrap: wrap; /* Allow items to wrap on small screens */
   justify-content: space-between; /* Space out logo and nav bar */
-  align-items: center; /* Align items vertically */
+  align-items: center; /* Vertically align items */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem; /* Add consistent horizontal spacing */
 }
 
-header .logo {
+/* Logo Styles */
+header img.logo {
   max-height: 70px; /* Ensure the logo scales appropriately */
 }
 
+/* Navigation Bar Styles */
 header nav ul {
-  list-style: none;
-  display: flex;
+  list-style: none; /* Remove bullet points */
+  display: flex; /* Arrange nav items horizontally */
   gap: 1rem; /* Spacing between nav links */
   margin: 0;
   padding: 0;
 }
 
-header nav ul li a {
-  text-decoration: none;
-  color: #333; /* Dark text for visibility */
-  font-weight: bold;
+header nav ul li {
+  display: inline-block; /* Ensure list items align correctly */
 }
 
-header nav ul li {
-  display: inline-block;
+header nav ul li a {
+  text-decoration: none; /* Remove underline from links */
+  color: #333; /* Dark Gray text for readability */
+  font-weight: bold; /* Emphasize links */
+  padding: 0.5rem; /* Add spacing for easier clicking */
+}
+
+/* Hover State for Nav Links */
+header nav ul li a:hover {
+  color: #4caf50; /* Green for hover effect */
+  text-decoration: underline; /* Add underline for visual feedback */
 }
 
 /* Media Query for Small Screens */
