@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meadowbrook Pharmacy</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      color: #333;
+    }
+
+    /* Hero Section */
+    #hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(to bottom right, #4caf50, #45a049);
+      color: #fff;
+    }
+
+    #hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+	  color: #fff; /* Dark gray text */
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    #hero .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #fff;
+      color: #4caf50;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    #hero .btn:hover {
+      background: #f9f9f9;
+    }
+
+    /* Image Gallery Placeholder */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .image-placeholder {
+      background: #e0e0e0;
+      border: 2px dashed #bbb;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #45a049;
+    }
+
+    /* Form Styling */
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #45a049;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="header-placeholder"></div>
+	
+	<script>
+		fetch('/header.html') // Absolute path starting from the root
+	  .then(response => response.text())
+	  .then(data => {
+		document.getElementById('header-placeholder').innerHTML = data;
+	  });
+  </script>
+  
+  <main>
+    <section id="hero">
+      <h2>Your Partner in Health</h2>
+      <p>We provide personalized care, prescription refills, and custom compounding to keep you healthy and happy.</p>
+      <a href="#refills" class="btn">Refill Your Prescriptions Online</a>
+    </section>
+
+    <section id="about" class="container">
+      <h2>About Us</h2>
+      <p>
+        Meadowbrook Pharmacy is an independent pharmacy in the DFW area, dedicated to providing personalized care, fast service, and the best prices. Our community-first approach ensures you and your family receive top-quality healthcare solutions tailored to your needs.
+      </p>
+      <div class="image-gallery">
+        <div class="image-placeholder">Photo of Founders</div>
+        <div class="image-placeholder">Photo of Team</div>
+        <div class="image-placeholder">Exterior of Pharmacy</div>
+        <div class="image-placeholder">Interior of Pharmacy</div>
+      </div>
+      <a href="about.html" class="btn">Learn More</a>
+    </section>
+
+    <section id="services" class="container">
+      <h2>Our Services</h2>
+      <ul>
+        <li>Prescription Refills</li>
+        <li>Free Delivery</li>
+        <li>Custom Compounding</li>
+        <li>Medication Consultations</li>
+        <li>Vaccinations</li>
+      </ul>
+    </section>
+
+    <section id="refills" class="container">
+      <h2>Online Prescription Refills</h2>
+      <p>Refilling your prescriptions has never been easier. Use our secure online portal to manage your refills quickly and conveniently.</p>
+      <a href="#" class="btn">Refill Now</a>
+    </section>
+
+    <section id="compounding" class="container">
+      <h2>Custom Compounding</h2>
+      <p>We specialize in custom compounding to create medications tailored to your specific needs, whether for unique dosages, allergen-free alternatives, or flavoring options for children.</p>
+      <a href="https://meadowbrookpharmacytx.com/index.php/page/compounding" class="btn" target="_blank">Learn More</a>
+    </section>
+
+    <section id="insurance" class="container">
+      <h2>Medicare and Insurance</h2>
+      <p>We accept most major insurance plans, including Medicare. Our team is here to assist you with claims and coverage questions.</p>
+      <ul>
+        <li>Medicare Part D</li>
+        <li>Private Insurance Plans</li>
+        <li>Flexible Spending Accounts</li>
+      </ul>
+      <p>Not sure if your plan is accepted? <a href="#contact">Contact us</a> for assistance.</p>
+    </section>
+
+	
+	<section id = "contact" class="container">
+		<h2>Contact Us</h2>
+		<!-- modify this form HTML and place wherever you want your form -->
+		<form
+		  action="https://formspree.io/f/xdkolzzq"
+		  method="POST"
+		>
+		  <label>
+			Your email:
+			<input type="email" name="email">
+		  </label>
+		  <label>
+			Your name:
+			<textarea name="name"></textarea>
+		  </label>
+		  <label>
+			Prescriptions to be Refilled:
+			<textarea name="prescription"></textarea>
+		  </label>
+		  <label>
+			Additional Info:
+			<textarea name="message"></textarea>
+		  </label>
+		  
+		  <!-- your other form fields go here -->
+		  <button type="submit">Send</button>
+		</form>
+	<section> 
+	
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Meadowbrook Pharmacy. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+header {
+  background: #f4f4f4; /* Light Gray for better readability */
+  color: #333; /* Dark Gray for text */
+  padding: 1rem 0;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem; /* Ensure consistent spacing */
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+}
+
+header nav ul li a {
+  color: #333; /* Dark gray text for better readability */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header img.logo {
+  max-height: 70px;
+}
