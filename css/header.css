@@ -1,14 +1,14 @@
 /* General Header Styles */
 header {
   background: #f4f4f4; /* Light Gray for better readability */
-  color: #333; /* Dark Gray text for contrast */
+  color: #333; /* Dark Gray for text */
   padding: 1rem 0;
 }
 
 header .container {
   display: flex;
-  flex-wrap: wrap; /* Allow items to wrap on small screens */
-  justify-content: space-between; /* Space out logo and nav bar */
+  flex-wrap: wrap; /* Allow items to wrap when needed */
+  justify-content: space-between; /* Space out logo, nav bar, and hours */
   align-items: center; /* Vertically align items */
   max-width: 1200px;
   margin: 0 auto;
@@ -40,6 +40,30 @@ header nav ul li a {
   padding: 0.5rem; /* Add spacing for easier clicking */
 }
 
+/* Business Hours Styles */
+header .business-hours {
+  text-align: right;
+  font-size: 0.9rem;
+  margin-left: auto; /* Push hours to the far right */
+  color: #333; /* Dark gray text */
+}
+
+header .business-hours p {
+  margin: 0; /* Remove default margins */
+  line-height: 1.4; /* Improve spacing between lines */
+}
+
+header .business-hours a {
+  text-decoration: none; /* Remove underline */
+  color: #4caf50; /* Green for call-to-action */
+  font-weight: bold;
+}
+
+header .business-hours a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+}
+
 /* Hover State for Nav Links */
 header nav ul li a:hover {
   color: #4caf50; /* Green for hover effect */
@@ -49,8 +73,19 @@ header nav ul li a:hover {
 /* Media Query for Small Screens */
 @media (max-width: 768px) {
   header .container {
-    flex-direction: column; /* Stack logo and nav bar vertically */
+    flex-direction: column; /* Stack logo, nav bar, and hours vertically */
     align-items: flex-start; /* Align items to the left */
+  }
+
+  header .business-hours {
+    text-align: left; /* Align business hours to the left */
+    font-size: 0.8rem; /* Slightly smaller font for compact display */
+    margin-top: 1rem; /* Add spacing below the nav bar */
+    width: 100%; /* Take up full width for better alignment */
+  }
+
+  header .business-hours p {
+    line-height: 1.2; /* Adjust line height for compactness */
   }
 
   header nav ul {
