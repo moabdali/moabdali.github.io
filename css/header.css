@@ -8,7 +8,7 @@ header {
 header .container {
   display: flex;
   flex-wrap: wrap; /* Allow items to wrap when needed */
-  justify-content: space-between; /* Space out logo, nav bar, and hours */
+  justify-content: space-between; /* Space out logo, nav bar, and info */
   align-items: center; /* Vertically align items */
   max-width: 1200px;
   margin: 0 auto;
@@ -18,16 +18,23 @@ header .container {
 /* Logo Styles */
 header img.logo {
   max-height: 70px; /* Ensure the logo scales appropriately */
+  flex: 0 0 auto; /* Prevent the logo from growing or shrinking */
 }
 
 /* Navigation Bar Styles */
+header nav {
+  flex: 1; /* Allow nav bar to take up available space */
+  display: flex;
+  justify-content: flex-end; /* Align nav links to the right */
+}
+
 header nav ul {
   list-style: none; /* Remove bullet points */
   display: flex; /* Arrange nav items horizontally */
-  flex-wrap: wrap; /* Allow items to wrap when needed */
-  gap: 1rem; /* Spacing between nav links */
+  gap: 0.8rem; /* Adjust spacing between nav links for better fit */
   margin: 0;
   padding: 0;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 header nav ul li {
@@ -38,30 +45,8 @@ header nav ul li a {
   text-decoration: none; /* Remove underline from links */
   color: #333; /* Dark Gray text for readability */
   font-weight: bold; /* Emphasize links */
-  padding: 0.5rem; /* Add spacing for easier clicking */
-}
-
-/* Business Hours Styles */
-header .business-hours {
-  text-align: right;
-  font-size: 0.9rem;
-  margin-left: auto; /* Push hours to the far right */
-  color: #333; /* Dark gray text */
-}
-
-header .business-hours p {
-  margin: 0; /* Remove default margins */
-  line-height: 1.4; /* Improve spacing between lines */
-}
-
-header .business-hours a {
-  text-decoration: none; /* Remove underline */
-  color: #4caf50; /* Green for call-to-action */
-  font-weight: bold;
-}
-
-header .business-hours a:hover {
-  text-decoration: underline; /* Add underline on hover */
+  font-size: 0.9rem; /* Reduce font size slightly for better fit */
+  padding: 0.4rem; /* Reduce padding for more compact links */
 }
 
 /* Hover State for Nav Links */
@@ -70,37 +55,92 @@ header nav ul li a:hover {
   text-decoration: underline; /* Add underline for visual feedback */
 }
 
-/* Media Query for Small Screens */
-@media (max-width: 768px) {
-  header .container {
-    flex-direction: column; /* Stack logo, nav bar, and hours vertically */
-    align-items: flex-start; /* Align items to the left */
-  }
+/* Business Info (Hours and Address) */
+.business-info {
+  display: flex; /* Align business hours and address side by side */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  gap: 1rem; /* Adjust spacing between sections */
+  font-size: 0.9rem;
+  color: #333;
+  align-items: flex-start; /* Align items at the top */
+  border: 1px solid #ddd; /* Single border around the business info */
+  padding: 1rem; /* Add padding for the box */
+  border-radius: 8px; /* Smooth rounded corners */
+  width: 100%; /* Ensure full-width for all screens */
+}
 
-  header .business-hours {
-    text-align: left; /* Align business hours to the left */
-    font-size: 0.8rem; /* Slightly smaller font for compact display */
-    margin-top: 1rem; /* Add spacing below the nav bar */
-    width: 100%; /* Take up full width for better alignment */
-  }
+.business-hours,
+.business-address {
+  line-height: 1.6; /* Improve readability */
+}
 
-  header .business-hours p {
-    line-height: 1.2; /* Adjust line height for compactness */
-  }
+.business-hours p,
+.business-address p {
+  margin: 0;
+}
 
+.business-hours a,
+.business-address a {
+  text-decoration: none;
+  color: #4caf50; /* Green for call-to-action */
+  font-weight: bold;
+}
+
+.business-hours a:hover,
+.business-address a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+/* Large Screen Specific Styles */
+@media (min-width: 769px) {
   header nav ul {
-    flex-wrap: wrap; /* Allow nav links to wrap into multiple lines */
-    justify-content: center; /* Align links evenly across lines */
-    width: 100%; /* Full width */
-    gap: 0.5rem; /* Adjust spacing for compact layout */
-  }
-
-  header nav ul li {
-    width: auto; /* Let items resize dynamically */
+    gap: 0.5rem; /* Reduce spacing between links for larger screens */
   }
 
   header nav ul li a {
-    font-size: 0.9rem; /* Reduce font size for mobile */
-    padding: 0.3rem; /* Add smaller padding for touch usability */
+    font-size: 0.85rem; /* Further reduce font size slightly for large screens */
+    padding: 0.3rem; /* Reduce padding for compactness */
+  }
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column; /* Stack logo, nav bar, and info vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  header nav {
+    justify-content: flex-start; /* Align nav links to the left on small screens */
+    width: 100%; /* Take up full width */
+    margin-bottom: 0.5rem;
+  }
+
+  header nav ul {
+    justify-content: flex-start; /* Align nav links to the left */
+    gap: 0.5rem;
+  }
+
+  header nav ul li {
+    flex: 1 0 45%; /* Allow each item to fit half the width */
+    text-align: left; /* Align text to the left */
+  }
+
+  .business-info {
+    flex-direction: row; /* Keep business hours and address side by side */
+    justify-content: space-between; /* Spread them evenly */
+    flex-wrap: nowrap; /* Prevent wrapping */
+    width: 100%; /* Ensure full-width container */
+  }
+
+  .business-hours,
+  .business-address {
+    flex: 1; /* Ensure both take equal space */
+    text-align: left; /* Align text to the left */
+  }
+
+  .business-hours p,
+  .business-address p {
+    line-height: 1.4; /* Adjust line height for compactness */
   }
 }

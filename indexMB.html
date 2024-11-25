@@ -38,7 +38,7 @@
     /* Hero Section */
     #hero {
       text-align: center;
-      padding: 3rem 1rem;
+      padding: 1rem 1rem;
       background: linear-gradient(to bottom right, #4caf50, #45a049);
       color: #fff;
     }
@@ -87,6 +87,43 @@
       font-size: 0.9rem;
       color: #666;
     }
+	
+	.services-grid {
+	  display: grid;
+	  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+	  gap: 1.5rem;
+	  margin-top: 1rem;
+	}
+
+	.service-item {
+	  background: #f9f9f9;
+	  border: 1px solid #ddd;
+	  padding: 1rem;
+	  border-radius: 8px;
+	  text-align: center;
+	  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	.service-item h3 {
+	  color: #4caf50;
+	  margin-bottom: 0.5rem;
+	}
+
+	.service-item p {
+	  font-size: 0.9rem;
+	  color: #555;
+	}
+
+	.service-item a {
+	  text-decoration: none;
+	  color: inherit;
+	}
+
+	.service-item:hover {
+	  background: #4caf50;
+	  color: #fff;
+	  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}
 
     /* Buttons */
     .btn {
@@ -151,14 +188,35 @@
     </section>
 	
 	<section id="services" class="container">
-		  <h2>Our Services</h2>
-		  <ul>
-			<li><a href="#refills">Prescription Refills</a></li>
-			<li><a href="#free-delivery">Free Delivery</a></li>
-			<li><a href="#compounding">Custom Compounding</a></li>
-			<li>Medication Consultations</li>
-			<li>Vaccinations</li>
-		  </ul>
+	  <h2>Our Services</h2>
+	  <div class="services-grid">
+		<div class="service-item">
+		  <a href="#refills">
+			<h3>Prescription Refills</h3>
+			<p>Convenient online and in-store options.</p>
+		  </a>
+		</div>
+		<div class="service-item">
+		  <a href="#free-delivery">
+			<h3>Free Delivery</h3>
+			<p>Get your medications delivered to your door.</p>
+		  </a>
+		</div>
+		<div class="service-item">
+		  <a href="#compounding">
+			<h3>Custom Compounding</h3>
+			<p>Medications tailored to your unique needs.</p>
+		  </a>
+		</div>
+		<div class="service-item">
+		  <h3>Medication Consultations</h3>
+		  <p>Expert advice to ensure the best care.</p>
+		</div>
+		<div class="service-item">
+		  <h3>Vaccinations</h3>
+		  <p>Stay protected with our immunization services.</p>
+		</div>
+	  </div>
 	</section>
 	
     <section id="about" class="container">
