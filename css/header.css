@@ -1,31 +1,57 @@
+/* General Styles for Header */
 header {
-  background: #f4f4f4; /* Light Gray for better readability */
-  color: #333; /* Dark Gray for text */
+  background: #fdf5e6; /* Neutral beige background */
   padding: 1rem 0;
 }
 
 header .container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem; /* Ensure consistent spacing */
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  justify-content: space-between; /* Space out logo and nav bar */
+  align-items: center; /* Align items vertically */
+}
+
+header .logo {
+  max-height: 70px; /* Ensure the logo scales appropriately */
 }
 
 header nav ul {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 1rem; /* Spacing between nav links */
   margin: 0;
+  padding: 0;
 }
 
 header nav ul li a {
-  color: #333; /* Dark gray text for better readability */
   text-decoration: none;
+  color: #333; /* Dark text for visibility */
   font-weight: bold;
 }
 
-header img.logo {
-  max-height: 70px;
+header nav ul li {
+  display: inline-block;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) {
+  header .container {
+    flex-direction: column; /* Stack logo and nav bar vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  header nav ul {
+    flex-direction: column; /* Stack nav items vertically */
+    width: 100%; /* Full width for nav bar */
+    gap: 0.5rem; /* Adjust spacing for compact layout */
+  }
+
+  header nav ul li {
+    width: 100%; /* Make nav links full width */
+  }
+
+  header nav ul li a {
+    display: block; /* Ensure links span the full width */
+    padding: 0.5rem; /* Add padding for better touch usability */
+  }
 }
