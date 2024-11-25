@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Meadowbrook Pharmacy</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      color: #333;
+    }
+
+    /* Hero Section */
+    #hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(to bottom right, #4caf50, #45a049);
+      color: #fff;
+    }
+
+    #hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #45a049;
+    }
+
+    /* Form Styling */
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #45a049;
+    }
+
+    form label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Import Header -->
+  <div id="header-placeholder"></div>
+
+  <script>
+    fetch('/header.html') // Ensure this path is correct relative to your server setup
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <h1>Contact Us</h1>
+    <p>We're here to assist you. Please fill out the form below, and we'll get back to you promptly.</p>
+  </section>
+
+  <main>
+    <section id="contact" class="container">
+      <h2>We Care About You</h2>
+      <p>
+        At Meadowbrook Pharmacy, your health and satisfaction are our top priorities. Whether you have a question about your prescriptions, need help with refills, or want to explore our services, we're just a message away. Our team is committed to providing you with prompt, friendly, and personalized assistance.
+      </p>
+      <p>Please complete the form below to get in touch with us. We look forward to serving you!</p>
+      <form
+        action="https://formspree.io/f/xdkolzzq"
+        method="POST"
+      >
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="prescription">Prescriptions to Be Refilled:</label>
+        <textarea id="prescription" name="prescription" rows="3"></textarea>
+
+        <label for="message">Additional Information:</label>
+        <textarea id="message" name="message" rows="5"></textarea>
+
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Meadowbrook Pharmacy & MoAbTech. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

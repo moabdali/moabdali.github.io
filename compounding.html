@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compounding | Meadowbrook Pharmacy</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      color: #333;
+    }
+
+    /* Hero Section */
+    #hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(to bottom right, #4caf50, #45a049);
+      color: #fff;
+    }
+
+    #hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #fff;
+      color: #4caf50;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #f9f9f9;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    /* Specific Styling for Compounding Section */
+    .compounding-section p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .compounding-section ul {
+      list-style: disc;
+      margin: 1rem 0 1rem 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Import Header -->
+  <div id="header-placeholder"></div>
+
+  <script>
+    fetch('/header.html') // Ensure this path is correct relative to your server setup
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <h1>Compounding</h1>
+    <p>Personalized medications tailored to meet your unique needs.</p>
+  </section>
+
+  <main>
+    <section class="container compounding-section">
+      <h2>Compounding</h2>
+      <p>
+        Compounding allows access to hard-to-find or discontinued medications and makes medication easier to use. It suits individual needs by providing alternate forms, flavors, strengths, or allergy-friendly options.
+      </p>
+      <p>
+        We have invested in state-of-the-art equipment and use high-quality chemicals during the compounding process to ensure the purity and effectiveness of compounded medications. All our compounding is done by trained staff under the close supervision of a licensed pharmacist.
+      </p>
+      <p>
+        Contact us or have your doctor’s office contact us for details about our compounding capabilities.
+      </p>
+      <p>We can compound most types of medications (except those requiring sterile compounding), including:</p>
+      <ul>
+        <li>Pain Management</li>
+        <li>Sports Medicine</li>
+        <li>Hormones (BHRT)</li>
+        <li>Dermatology</li>
+        <li>Veterinary Medicines</li>
+      </ul>
+      <p>
+        Call us to find out if compounded medications could be an option for you.
+      </p>
+      <a href="tel:+18174516900" class="btn">Call Us Today</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Meadowbrook Pharmacy & MoAbTech. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

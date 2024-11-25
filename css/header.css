@@ -24,6 +24,7 @@ header img.logo {
 header nav ul {
   list-style: none; /* Remove bullet points */
   display: flex; /* Arrange nav items horizontally */
+  flex-wrap: wrap; /* Allow items to wrap when needed */
   gap: 1rem; /* Spacing between nav links */
   margin: 0;
   padding: 0;
@@ -62,7 +63,6 @@ header .business-hours a {
 header .business-hours a:hover {
   text-decoration: underline; /* Add underline on hover */
 }
-}
 
 /* Hover State for Nav Links */
 header nav ul li a:hover {
@@ -89,17 +89,18 @@ header nav ul li a:hover {
   }
 
   header nav ul {
-    flex-direction: column; /* Stack nav items vertically */
-    width: 100%; /* Full width for nav bar */
+    flex-wrap: wrap; /* Allow nav links to wrap into multiple lines */
+    justify-content: center; /* Align links evenly across lines */
+    width: 100%; /* Full width */
     gap: 0.5rem; /* Adjust spacing for compact layout */
   }
 
   header nav ul li {
-    width: 100%; /* Make nav links full width */
+    width: auto; /* Let items resize dynamically */
   }
 
   header nav ul li a {
-    display: block; /* Ensure links span the full width */
-    padding: 0.5rem; /* Add padding for better touch usability */
+    font-size: 0.9rem; /* Reduce font size for mobile */
+    padding: 0.3rem; /* Add smaller padding for touch usability */
   }
 }
