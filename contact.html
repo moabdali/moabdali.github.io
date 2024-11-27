@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meadowbrook Pharmacy</title>
   <style>
     /* General Styles */
@@ -11,7 +12,9 @@
       padding: 0;
       color: #333;
     }
-	
+	body {
+		min-width: 920px; /* Sets the minimum width */
+	  }
 	/* Fixed Header */
     .fixed-header {
       position: fixed;
@@ -21,6 +24,7 @@
       z-index: 1000;
       background: #f4f4f4;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	  min-width: 920px; /* Sets the minimum width */
     }
 
     .fixed-header .header-container {
