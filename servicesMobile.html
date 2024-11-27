@@ -5,272 +5,199 @@
   <title>Meadowbrook Pharmacy MOBILE EDITION</title>
   <style>
     /* General Styles */
-     /* General Styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
+	body {
+	  font-family: Arial, sans-serif;
+	  margin: 0;
+	  padding: 0;
+	  color: #333;
+	}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
-    }
+	.container {
+	  max-width: 1200px;
+	  margin: 0 auto;
+	  padding: 1rem;
+	}
 
-    section {
-      margin-bottom: 2rem;
-    }
+	section {
+	  margin-bottom: 2rem;
+	}
 
-    section h2 {
-      border-bottom: 2px solid #4caf50;
-      padding-bottom: 0.5rem;
-      text-align: center;
-      color: #333;
-    }
+	section h2, section h3 {
+	  text-align: center;
+	}
 
-    section h3 {
-      color: #4caf50;
-      margin-bottom: 1rem;
-    }
+	section h2 {
+	  border-bottom: 2px solid #4caf50;
+	  padding-bottom: 0.5rem;
+	  color: #333;
+	}
 
-    .product-list {
-      margin: 2rem 0;
-      padding: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #f9f9f9;
-    }
+	section h3 {
+	  color: #4caf50;
+	  margin-bottom: 1rem;
+	}
 
-    .product-item {
-      margin-bottom: 1.5rem;
-    }
+	/* Fixed Header */
+	.fixed-header {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  z-index: 1000;
+	  background: #f4f4f4;
+	  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	  padding: 1rem 0;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  font-size: 2rem;
+	}
 
-    .product-item ul {
-      margin: 0.5rem 0;
-      padding-left: 1.5rem;
-      list-style-type: disc;
-    }
+	.header-content {
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: flex-start;
+	  width: 90%;
+	  max-width: 1200px;
+	}
 
-    .product-item ul li {
-      margin-bottom: 0.5rem;
-    }
+	.header-logo {
+	  text-align: center;
+	  margin-top: 1rem;
+	}
 
-    /* Fixed Header */
-    .fixed-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: #f4f4f4;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 1rem 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+	.header-logo img {
+	  width: 600px;
+	  height: auto;
+	}
 
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      width: 90%;
-      max-width: 1200px;
-    }
+	/* Hero Section */
+	#hero {
+	  text-align: center;
+	  padding: 35rem 1rem 2rem;
+	  background: linear-gradient(to bottom right, #4caf50, #45a049);
+	  color: #fff;
+	  transition: padding 0.3s ease;
+	}
 
-    .menu-toggle {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      flex: 1;
-    }
+	#hero h1 {
+	  font-size: 2.5rem;
+	  margin-bottom: 1rem;
+	}
 
-    /* Navbar */
-    .navbar {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      transition: max-height 0.3s ease;
-      overflow: hidden;
-    }
+	#hero p {
+	  font-size: 1.2rem;
+	  margin-bottom: 1.5rem;
+	}
 
-    .navbar.hidden {
-      max-height: 0;
-    }
+	.refill-btn {
+	  display: inline-block;
+	  padding: 1rem 2rem;
+	  background: #fff;
+	  color: #4caf50;
+	  text-decoration: none;
+	  border-radius: 50px;
+	  font-size: 5rem;
+	  font-weight: bold;
+	}
 
-    .navbar a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      background: #e0e0e0;
-      text-align: center;
-      border-radius: 5px;
-      transition: background-color 0.3s, color 0.3s;
-    }
+	.refill-btn:hover {
+	  background: #f9f9f9;
+	}
 
-    .navbar a:hover {
-      background-color: #4caf50;
-      color: #fff;
-    }
+	/* Footer */
+	footer {
+	  background: #333;
+	  color: #fff;
+	  text-align: center;
+	  padding: 1rem 0;
+	}
 
-    /* Business Info */
-    .business-info {
-      flex-direction: column;
-      gap: 0.5rem;
-      text-align: left;
-      font-size: 0.9rem;
-      transition: max-height 0.3s ease;
-      overflow: hidden;
-    }
+	/* Navbar and Menu Toggle */
+	.menu-toggle, .navbar {
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: center;
+	  align-items: center;
+	  gap: 10px;
+	  text-align: center;
+	  margin: 0 auto;
+	  width: 100%;
+	  max-width: 600px;
+	}
 
-    .business-info.hidden {
-      max-height: 0;
-    }
+	.navbar {
+	  flex-direction: column;
+	}
 
-    .business-info div {
-      margin: 0;
-    }
+	.navbar.hidden {
+	  display: none;
+	}
 
-    .business-phone a {
-      display: inline-block;
-      padding: 0.5rem 1rem;
-      background: #4caf50;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
+	/* Button Styles */
+	.navbar a, button, .menu-button, a.btn, .business-phone a {
+	  display: inline-flex;
+	  justify-content: center;
+	  align-items: center;
+	  width: 250px;
+	  height: 60px;
+	  text-align: center;
+	  padding: 0;
+	  border: 2px solid #4caf50;
+	  border-radius: 5px;
+	  font-size: 1rem;
+	  background: #EFEFEF;
+	  color: #333;
+	  box-sizing: border-box;
+	}
 
-    .business-phone a:hover {
-      background: #45a049;
-    }
+	.navbar a:hover, button:hover, .menu-button:hover, a.btn:hover, .business-phone a:hover {
+	  background: #45a049;
+	  color: #fff;
+	  border-color: #45a049;
+	}
 
-    /* Menu Button */
-    .menu-button {
-      display: block;
-      background: #4caf50;
-      color: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-bottom: 1rem;
-    }
+	.menu-button {
+	  background: #45af49;
+	}
 
-    .menu-button:hover {
-      background: #45a049;
-    }
+	/* Business Info */
+	.business-info {
+	  flex-direction: column;
+	  gap: 0.5rem;
+	  text-align: center;
+	  font-size: 1rem;
+	  transition: max-height 0.3s ease, opacity 0.3s ease;
+	  max-height: 500px;
+	  overflow: hidden;
+	  opacity: 1;
+	  border: 1px solid #ccc;
+	  border-radius: 8px;
+	  padding: 1rem;
+	  background: #f9f9f9;
+	}
 
-    /* Logo */
-    .header-logo {
-      text-align: center;
-      margin-top: 1rem;
-    }
+	.business-info.hidden {
+	  max-height: 0;
+	  opacity: 0;
+	  padding: 0;
+	}
 
-    .header-logo img {
-      max-width: auto;
-      height: auto;
-    }
+	.business-info div {
+	  margin: 0;
+	}
 
-    /* Hero Section */
-    #hero {
-      text-align: center;
-      padding: 35rem 1rem 2rem; /* 35rem padding by default */
-      background: linear-gradient(to bottom right, #4caf50, #45a049);
-      color: #fff;
-      transition: padding 0.3s ease;
-    }
+	/* Image Gallery */
+	.image-gallery {
+	  display: grid;
+	  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	  gap: 1rem;
+	}
 
-    #hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    #hero p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Footer */
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem 0;
-    }
-
-    
-
-    /* Buttons */
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: #4caf50;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1rem;
-    }
-
-    .btn:hover {
-      background: #45a049;
-    }
-
-    /* Form Styling */
-    form input, form textarea, form button {
-      width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    form button {
-      background: #4caf50;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-
-    form button:hover {
-      background: #45a049;
-    }
-
-    /* Footer */
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem 0;
-    }
-	
-	html {
-      scroll-behavior: smooth;
-    }
-	
-	 /* Add this to your CSS */
-	  .anchor-offset {
-		position: relative;
-	  }
-
-	  #anchor-free-delivery {
-		content: '';
-		display: inline-block;
-		height: 200px; /* Adjust to your desired offset */
-		margin-top: -1000px; /* Same value as height to offset the content */
-		visibility: hidden; /* Keeps it invisible */
-	  }
-	  
-	  .image-placeholder {
+	.image-placeholder {
 	  background: #e0e0e0;
 	  border: 2px dashed #bbb;
 	  height: 150px;
-	  margin-bottom: 1rem;
 	  display: flex;
 	  justify-content: center;
 	  align-items: center;
@@ -279,6 +206,86 @@
 	  color: #666;
 	  border-radius: 5px;
 	}
+
+	/* Services Grid */
+	.services-grid {
+	  display: grid;
+	  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	  gap: 1.5rem;
+	  margin-top: 1rem;
+	}
+
+	.service-item {
+	  background: #f9f9f9;
+	  border: 1px solid #ddd;
+	  padding: 1rem;
+	  border-radius: 8px;
+	  text-align: center;
+	  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	}
+
+	.service-item h3 {
+	  color: #4caf50;
+	  margin-bottom: 0.5rem;
+	}
+
+	.service-item p {
+	  font-size: 0.9rem;
+	  color: #555;
+	}
+
+	.service-item a {
+	  text-decoration: none;
+	  color: inherit;
+	}
+
+	.service-item:hover {
+	  background: #4caf50;
+	  color: #fff;
+	  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}
+
+	/* Form Styling */
+	form input, form textarea, form button {
+	  width: 100%;
+	  padding: 0.75rem;
+	  margin: 0.5rem 0;
+	  border: 1px solid #ccc;
+	  border-radius: 5px;
+	}
+
+	form button {
+	  background: #4caf50;
+	  color: #fff;
+	  border: none;
+	  cursor: pointer;
+	}
+
+	form button:hover {
+	  background: #45a049;
+	}
+
+	/* Miscellaneous */
+	html {
+	  scroll-behavior: smooth;
+	}
+
+	.anchor-offset {
+	  position: relative;
+	}
+
+	#anchor-free-delivery {
+	  content: '';
+	  display: inline-block;
+	  height: 200px;
+	  margin-top: -1000px;
+	  visibility: hidden;
+	}
+
+	#header-padder {
+	  padding: 25rem 1rem 2rem;
+	}
+
 
   </style>
   <script>
@@ -295,7 +302,7 @@
 
         // Adjust hero padding based on menu visibility
         if (navbar.classList.contains("hidden")) {
-          hero.style.paddingTop = "10rem"; // Adjust padding when menu is hidden
+          hero.style.paddingTop = "1rem"; // Adjust padding when menu is hidden
         } else {
           hero.style.paddingTop = "35rem"; // Restore 35rem padding when menu is visible
         }
@@ -307,8 +314,9 @@
   <!-- Fixed Header -->
   <div class="fixed-header">
     <div class="header-content">
-      <button class="menu-button">Menu</button>
+      
       <div class="menu-toggle">
+		<button class="menu-button">Show/Hide Menu</button>
         <!-- Navbar -->
         <div class="navbar">
           <a href="/indexMobile.html">Home</a>
@@ -343,6 +351,10 @@
       <img src="http://meadowbrookpharmacytx.com/fassets/images/meadowbrook-logo.png" alt="Meadowbrook Pharmacy Logo">
     </div>
   </div>
+
+  <main>
+	<section id="header-padder">
+	</section>
 
 	<!-- Hero Section -->
 	<section id="hero">
