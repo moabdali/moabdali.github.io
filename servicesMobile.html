@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meadowbrook Pharmacy MOBILE EDITION</title>
+  <style>
+    /* General Styles */
+     /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      color: #333;
+    }
+
+    section h3 {
+      color: #4caf50;
+      margin-bottom: 1rem;
+    }
+
+    .product-list {
+      margin: 2rem 0;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    .product-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .product-item ul {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+      list-style-type: disc;
+    }
+
+    .product-item ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Fixed Header */
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: #f4f4f4;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      flex: 1;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: max-height 0.3s ease;
+      overflow: hidden;
+    }
+
+    .navbar.hidden {
+      max-height: 0;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      background: #e0e0e0;
+      text-align: center;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    /* Business Info */
+    .business-info {
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: left;
+      font-size: 0.9rem;
+      transition: max-height 0.3s ease;
+      overflow: hidden;
+    }
+
+    .business-info.hidden {
+      max-height: 0;
+    }
+
+    .business-info div {
+      margin: 0;
+    }
+
+    .business-phone a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .business-phone a:hover {
+      background: #45a049;
+    }
+
+    /* Menu Button */
+    .menu-button {
+      display: block;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
+    .menu-button:hover {
+      background: #45a049;
+    }
+
+    /* Logo */
+    .header-logo {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .header-logo img {
+      max-width: auto;
+      height: auto;
+    }
+
+    /* Hero Section */
+    #hero {
+      text-align: center;
+      padding: 35rem 1rem 2rem; /* 35rem padding by default */
+      background: linear-gradient(to bottom right, #4caf50, #45a049);
+      color: #fff;
+      transition: padding 0.3s ease;
+    }
+
+    #hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .btn:hover {
+      background: #45a049;
+    }
+
+    /* Form Styling */
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #45a049;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+	
+	html {
+      scroll-behavior: smooth;
+    }
+	
+	 /* Add this to your CSS */
+	  .anchor-offset {
+		position: relative;
+	  }
+
+	  #anchor-free-delivery {
+		content: '';
+		display: inline-block;
+		height: 200px; /* Adjust to your desired offset */
+		margin-top: -1000px; /* Same value as height to offset the content */
+		visibility: hidden; /* Keeps it invisible */
+	  }
+	  
+	  .image-placeholder {
+	  background: #e0e0e0;
+	  border: 2px dashed #bbb;
+	  height: 150px;
+	  margin-bottom: 1rem;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  text-align: center;
+	  font-size: 0.9rem;
+	  color: #666;
+	  border-radius: 5px;
+	}
+
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuButton = document.querySelector(".menu-button");
+      const navbar = document.querySelector(".navbar");
+      const businessInfo = document.querySelector(".business-info");
+      const hero = document.querySelector("#hero");
+
+      menuButton.addEventListener("click", () => {
+        [navbar, businessInfo].forEach((element) => {
+          element.classList.toggle("hidden");
+        });
+
+        // Adjust hero padding based on menu visibility
+        if (navbar.classList.contains("hidden")) {
+          hero.style.paddingTop = "10rem"; // Adjust padding when menu is hidden
+        } else {
+          hero.style.paddingTop = "35rem"; // Restore 35rem padding when menu is visible
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Fixed Header -->
+  <div class="fixed-header">
+    <div class="header-content">
+      <button class="menu-button">Menu</button>
+      <div class="menu-toggle">
+        <!-- Navbar -->
+        <div class="navbar">
+          <a href="/indexMobile.html">Home</a>
+          <a href="/aboutMobile.html">About Us</a>
+          <a href="/servicesMobile.html">Products and Services</a>
+          <a href="/https://4553346.winrxrefill.com/default.aspx">Refills</a>
+          <a href="/compoundingMobile.html">Compounding</a>
+          <a href="/indexMobile.html#insurance">Insurance</a>
+          <a href="/contactMobile.html">Contact</a>
+        </div>
+        <!-- Business Info -->
+        <div class="business-info">
+          <div>
+            <strong>Business Hours:</strong><br>
+            Mon - Fri: 8 AM - 7 PM<br>
+            Sat: 9 AM - 2 PM<br>
+            Sun: Closed
+          </div>
+          <div>
+            <strong>Address:</strong><br>
+            6624 Meadowbrook Dr<br>
+            Fort Worth, TX 76112
+          </div>
+          <div class="business-phone">
+            <a href="tel:+18174516900">Call Us: (817) 451-6900</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Logo -->
+    <div class="header-logo">
+      <img src="http://meadowbrookpharmacytx.com/fassets/images/meadowbrook-logo.png" alt="Meadowbrook Pharmacy Logo">
+    </div>
+  </div>
+
+	<!-- Hero Section -->
+	<section id="hero">
+	  <div style="
+		text-align: center;
+		
+		background: linear-gradient(to bottom right, #4caf50, #45a049);
+		color: #fff;">
+		<h1 style="font-size: 2.5rem">
+		  Products & Services
+		</h1>
+		<p style="font-size: 1.2rem;">
+		  Explore the comprehensive range of products and services we offer to meet all your health and wellness needs.
+		</p>
+	  </div>
+	</section>
+
+    <section class="container">
+	  <h2>Products & Services</h2>
+	  <div class="product-list">
+		<div class="product-item">
+		  <h3>Prescription Medications</h3>
+		  <div class="image-placeholder">Image: Prescription Medications</div>
+		  <p>We provide a wide variety of prescription medications to meet your healthcare needs. Our pharmacy team ensures accurate dispensing and personalized support for every patient.</p>
+		</div>
+		<div class="product-item">
+		  <h3>Over-the-Counter Medications</h3>
+		  <div class="image-placeholder">Image: Over-the-Counter Medications</div>
+		  <ul>
+			<li>Pain relievers</li>
+			<li>Allergy relief</li>
+			<li>Digestive health products</li>
+			<li>Cold and flu remedies</li>
+		  </ul>
+		</div>
+		<div class="product-item">
+		  <h3>Vitamins & Supplements</h3>
+		  <div class="image-placeholder">Image: Vitamins & Supplements</div>
+		  <p>Support your health with our range of multivitamins, probiotics, and specialty supplements tailored to various needs, including immunity, energy, and bone health.</p>
+		</div>
+		<div class="product-item">
+		  <h3>Medical Supplies</h3>
+		  <div class="image-placeholder">Image: Medical Supplies</div>
+		  <ul>
+			<li>Diabetic supplies</li>
+			<li>First aid kits</li>
+			<li>Wound care essentials</li>
+			<li>Mobility aids (walkers, canes, etc.)</li>
+		  </ul>
+		</div>
+		<div class="product-item">
+		  <h3>Compounding Services</h3>
+		  <div class="image-placeholder">Image: Compounding Services</div>
+		  <p>We specialize in customized medications, including flavor adjustments for children, allergen-free alternatives, and compounded formulas for specific medical needs.</p>
+		</div>
+		<div class="product-item">
+		  <h3>Vaccinations</h3>
+		  <div class="image-placeholder">Image: Vaccinations</div>
+		  <ul>
+			<li>Flu shots</li>
+			<li>COVID-19 vaccines</li>
+			<li>Shingles vaccine</li>
+			<li>Travel immunizations</li>
+		  </ul>
+		</div>
+		<div class="product-item">
+		  <h3>Free Delivery</h3>
+		  <div class="image-placeholder">Image: Free Delivery</div>
+		  <p>Enjoy the convenience of free prescription delivery directly to your home or workplace.</p>
+		</div>
+	  </div>
+	</section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Meadowbrook Pharmacy & MoAbTech. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

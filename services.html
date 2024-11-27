@@ -107,6 +107,34 @@
 	#header-padder {
 		padding: 13rem 1rem 2rem;  /* Adjusted to compensate for the fixed header */
 	}
+    
+
+    .business-hours p,
+    .business-address p {
+      margin: 0;
+    }
+
+    .business-phone {
+      margin-top: 0.5rem;
+    }
+
+    .business-phone a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .business-phone a:hover {
+      background: #45a049;
+    }
+
+	#header-padder {
+		padding: 13rem 1rem 2rem;  /* Adjusted to compensate for the fixed header */
+	}
 
     .container {
       max-width: 1200px;
@@ -123,6 +151,33 @@
       padding-bottom: 0.5rem;
       text-align: center;
       color: #333;
+    }
+
+    section h3 {
+      color: #4caf50;
+      margin-bottom: 1rem;
+    }
+
+    .product-list {
+      margin: 2rem 0;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    .product-item {
+      margin-bottom: 1.5rem;
+    }
+
+    .product-item ul {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+      list-style-type: disc;
+    }
+
+    .product-item ul li {
+      margin-bottom: 0.5rem;
     }
 
     /* Hero Section */
@@ -148,41 +203,16 @@
     .btn {
       display: inline-block;
       padding: 0.75rem 1.5rem;
-      background: #4caf50;
-      color: #fff;
+      background: #fff;
+      color: #4caf50;
       text-decoration: none;
       border-radius: 5px;
       font-size: 1rem;
+      font-weight: bold;
     }
 
     .btn:hover {
-      background: #45a049;
-    }
-
-    /* Form Styling */
-    form input, form textarea, form button {
-      width: 100%;
-      padding: 0.75rem;
-      margin: 0.5rem 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    form button {
-      background: #4caf50;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
-
-    form button:hover {
-      background: #45a049;
-    }
-
-    form label {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      display: block;
+      background: #f9f9f9;
     }
 
     /* Footer */
@@ -192,6 +222,20 @@
       text-align: center;
       padding: 1rem 0;
     }
+
+    .image-placeholder {
+	  background: #e0e0e0;
+	  border: 2px dashed #bbb;
+	  height: 150px;
+	  margin-bottom: 1rem;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  text-align: center;
+	  font-size: 0.9rem;
+	  color: #666;
+	  border-radius: 5px;
+	}
   </style>
 </head>
 <body>
@@ -236,35 +280,76 @@
 	</section>
 
   <!-- Hero Section -->
-  <section id="hero">
-    <h1>Contact Us</h1>
-    <p>We're here to assist you. Please fill out the form below, and we'll get back to you promptly.</p>
-  </section>
+	<section id="hero">
+	  <div style="
+		text-align: center;
+		
+		background: linear-gradient(to bottom right, #4caf50, #45a049);
+		color: #fff;">
+		<h1 style="font-size: 2.5rem">
+		  Products & Services
+		</h1>
+		<p style="font-size: 1.2rem;">
+		  Explore the comprehensive range of products and services we offer to meet all your health and wellness needs.
+		</p>
+	  </div>
+	</section>
 
-  <main>
-    <section id="contact" class="container">
-      <h2>We Care About You</h2>
-      <p>
-        At Meadowbrook Pharmacy, your health and satisfaction are our top priorities. Whether you have a question about your prescriptions, need help with refills, or want to explore our services, we're just a message away. Our team is committed to providing you with prompt, friendly, and personalized assistance.
-      </p>
-      <p>Please complete the form below to get in touch with us. We look forward to serving you!</p>
-      <form
-        action="https://formspree.io/f/xdkolzzq"
-        method="POST"
-      >
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="message">What can we help with?:</label>
-        <textarea id="message" name="message" rows="5"></textarea>
-
-        <button type="submit">Send</button>
-      </form>
-    </section>
-  </main>
+  <section class="container">
+	  <h2>Products & Services</h2>
+	  <div class="product-list">
+		<div class="product-item">
+		  <h3>Prescription Medications</h3>
+		  <div class="image-placeholder">Image: Prescription Medications</div>
+		  <p>We provide a wide variety of prescription medications to meet your healthcare needs. Our pharmacy team ensures accurate dispensing and personalized support for every patient.</p>
+		</div>
+		<div class="product-item">
+		  <h3>Over-the-Counter Medications</h3>
+		  <div class="image-placeholder">Image: Over-the-Counter Medications</div>
+		  <ul>
+			<li>Pain relievers</li>
+			<li>Allergy relief</li>
+			<li>Digestive health products</li>
+			<li>Cold and flu remedies</li>
+		  </ul>
+		</div>
+		<div class="product-item">
+		  <h3>Vitamins & Supplements</h3>
+		  <div class="image-placeholder">Image: Vitamins & Supplements</div>
+		  <p>Support your health with our range of multivitamins, probiotics, and specialty supplements tailored to various needs, including immunity, energy, and bone health.</p>
+		</div>
+		<div class="product-item">
+		  <h3>Medical Supplies</h3>
+		  <div class="image-placeholder">Image: Medical Supplies</div>
+		  <ul>
+			<li>Diabetic supplies</li>
+			<li>First aid kits</li>
+			<li>Wound care essentials</li>
+			<li>Mobility aids (walkers, canes, etc.)</li>
+		  </ul>
+		</div>
+		<div class="product-item">
+		  <h3>Compounding Services</h3>
+		  <div class="image-placeholder">Image: Compounding Services</div>
+		  <p>We specialize in customized medications, including flavor adjustments for children, allergen-free alternatives, and compounded formulas for specific medical needs.</p>
+		</div>
+		<div class="product-item">
+		  <h3>Vaccinations</h3>
+		  <div class="image-placeholder">Image: Vaccinations</div>
+		  <ul>
+			<li>Flu shots</li>
+			<li>COVID-19 vaccines</li>
+			<li>Shingles vaccine</li>
+			<li>Travel immunizations</li>
+		  </ul>
+		</div>
+		<div class="product-item">
+		  <h3>Free Delivery</h3>
+		  <div class="image-placeholder">Image: Free Delivery</div>
+		  <p>Enjoy the convenience of free prescription delivery directly to your home or workplace.</p>
+		</div>
+	  </div>
+	</section>
 
   <footer>
     <div class="container">

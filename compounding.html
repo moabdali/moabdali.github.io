@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compounding | Meadowbrook Pharmacy</title>
+  <title>Meadowbrook Pharmacy</title>
   <style>
     /* General Styles */
     body {
@@ -12,6 +11,130 @@
       padding: 0;
       color: #333;
     }
+	
+	/* Fixed Header */
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: #f4f4f4;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .fixed-header .header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .fixed-header nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .fixed-header nav ul li {
+      display: inline-block;
+    }
+
+    .fixed-header nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .fixed-header nav ul li a:hover {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    .fixed-header img.logo {
+      display: block;
+      max-width: auto;
+      height: auto;
+      margin: 1rem auto 0; /* Adds spacing below the nav bar */
+    }
+	
+	/* Business Info (Hours and Address) */
+    .business-info {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      font-size: 1rem;
+      color: #333;
+      align-items: flex-start;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      border-radius: 5px;
+      margin-top: 1rem; /* Add spacing to separate from the header */
+    }
+
+    
+
+    .business-hours p,
+    .business-address p {
+      margin: 0;
+    }
+
+    .business-phone {
+      margin-top: 0.5rem;
+    }
+
+    .business-phone a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .business-phone a:hover {
+      background: #45a049;
+    }
+
+	#header-padder {
+		padding: 13rem 1rem 2rem;  /* Adjusted to compensate for the fixed header */
+	}
+    
+
+    .business-hours p,
+    .business-address p {
+      margin: 0;
+    }
+
+    .business-phone {
+      margin-top: 0.5rem;
+    }
+
+    .business-phone a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .business-phone a:hover {
+      background: #45a049;
+    }
+
+	#header-padder {
+		padding: 13rem 1rem 2rem;  /* Adjusted to compensate for the fixed header */
+	}
 
     .container {
       max-width: 1200px;
@@ -86,16 +209,45 @@
   </style>
 </head>
 <body>
-  <!-- Import Header -->
-  <div id="header-placeholder"></div>
+  <!-- Fixed Header -->
+  <div class="fixed-header">
+    <div class="header-container">
+      <!-- NAVIGATION BAR -->
+      <nav>
+        <ul>
+          <li><a href="indexMB.html">Home</a></li>
+          <li><a href="/about.html#about-hero">About Us</a></li>
+          <li><a href="/services.html">Services</a></li>
+          <li><a href="https://4553346.winrxrefill.com/default.aspx">Refills</a></li>
+          <li><a href="/compounding.html#hero">Compounding</a></li>
+          <li><a href="/indexMB.html#insurance">Insurance</a></li>
+          <li><a href="/contact.html#hero">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="business-info">
+        <div class="business-hours">
+          <p><strong>Business Hours:</strong><br>
+            Mon - Fri: 8 AM - 7 PM<br>
+            Sat: 9 AM - 2 PM<br>
+            Sun: Closed</p>
+        </div>
+        <div class="business-address">
+          <p><strong>Address:</strong><br>
+            6624 Meadowbrook Dr<br>
+            Fort Worth, TX 76112</p>
+        </div>
+        <div class="business-phone">
+          <a href="tel:+18174516900">Call Us: (817) 451-6900</a>
+        </div>
+      </div>
+      <!-- LOGO -->
+      <img src="http://meadowbrookpharmacytx.com/fassets/images/meadowbrook-logo.png" alt="Meadowbrook Pharmacy Logo" class="logo">
+    </div>
+  </div>
 
-  <script>
-    fetch('/header.html') // Ensure this path is correct relative to your server setup
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      });
-  </script>
+  <main>
+	<section id="header-padder">
+	</section>
 
   <!-- Hero Section -->
   <section id="hero">

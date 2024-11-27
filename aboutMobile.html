@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Meadowbrook Pharmacy</title>
+  <title>Meadowbrook Pharmacy MOBILE EDITION</title>
   <style>
     /* General Styles */
     body {
@@ -11,9 +11,30 @@
       padding: 0;
       color: #333;
     }
-	
-	
-	/* Fixed Header */
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.5rem;
+      text-align: center;
+      color: #333;
+    }
+
+    section h3 {
+      text-align: center;
+      color: #222;
+    }
+
+    /* Fixed Header */
     .fixed-header {
       position: fixed;
       top: 0;
@@ -22,142 +43,72 @@
       z-index: 1000;
       background: #f4f4f4;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .fixed-header .header-container {
+      padding: 1rem 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 1rem 0;
     }
 
-    .fixed-header nav ul {
-      list-style: none;
+    .header-content {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .menu-toggle {
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
-      margin: 0;
-      padding: 0;
+      flex: 1;
     }
 
-    .fixed-header nav ul li {
-      display: inline-block;
+    /* Navbar */
+    .navbar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: max-height 0.3s ease;
+      overflow: hidden;
     }
 
-    .fixed-header nav ul li a {
+    .navbar.hidden {
+      max-height: 0;
+    }
+
+    .navbar a {
       text-decoration: none;
       color: #333;
       font-weight: bold;
       padding: 0.5rem 1rem;
-      border: 1px solid #ddd;
+      background: #e0e0e0;
+      text-align: center;
       border-radius: 5px;
       transition: background-color 0.3s, color 0.3s;
     }
 
-    .fixed-header nav ul li a:hover {
+    .navbar a:hover {
       background-color: #4caf50;
       color: #fff;
     }
 
-    .fixed-header img.logo {
-      display: block;
-      max-width: auto;
-      height: auto;
-      margin: 1rem auto 0; /* Adds spacing below the nav bar */
-    }
-
-	#header-padder {
-		padding: 13rem 1rem 2rem;  /* Adjusted to compensate for the fixed header */
-	}
-	
-	
-
-    /* Main Section */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-
-    .section-title {
-      text-align: center;
-      color: #4caf50;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
-      border-bottom: 2px solid #4caf50;
-      display: inline-block;
-      padding-bottom: 0.5rem;
-    }
-
-    section {
-      margin-bottom: 2rem;
-    }
-
-    h3 {
-      color: #333;
-      margin-top: 1rem;
-      font-size: 1.5rem;
-    }
-
-
-    
-    /* Hero Section */
-    #hero {
-      text-align: center;
-      padding: 2rem 1rem 2rem;
-      background: linear-gradient(to bottom right, #4caf50, #45a049);
-      color: #fff;
-    }
-	
-
-    #hero h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    #hero p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    #hero .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: #fff;
-      color: #4caf50;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
-
-    #hero .btn:hover {
-      background: #f9f9f9;
-    }
-
-    /* Business Info (Hours and Address) */
+    /* Business Info */
     .business-info {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 1rem;
-      font-size: 1rem;
-      color: #333;
-      align-items: flex-start;
-      border: 1px solid #ddd;
-      padding: 1rem;
-      border-radius: 5px;
-      margin-top: 1rem; /* Add spacing to separate from the header */
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: left;
+      font-size: 0.9rem;
+      transition: max-height 0.3s ease;
+      overflow: hidden;
     }
 
-    
+    .business-info.hidden {
+      max-height: 0;
+    }
 
-    .business-hours p,
-    .business-address p {
+    .business-info div {
       margin: 0;
-    }
-
-    .business-phone {
-      margin-top: 0.5rem;
     }
 
     .business-phone a {
@@ -174,7 +125,78 @@
       background: #45a049;
     }
 
-    /* Image Gallery Placeholder */
+    /* Menu Button */
+    .menu-button {
+      display: block;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
+    .menu-button:hover {
+      background: #45a049;
+    }
+
+    /* Logo */
+    .header-logo {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .header-logo img {
+      max-width: auto;
+      height: auto;
+    }
+
+    /* Hero Section */
+    #hero {
+      text-align: center;
+      padding: 35rem 1rem 2rem; /* 35rem padding by default */
+      background: linear-gradient(to bottom right, #4caf50, #45a049);
+      color: #fff;
+      transition: padding 0.3s ease;
+    }
+
+    #hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .refill-btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: #fff;
+      color: #4caf50;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .refill-btn:hover {
+      background: #f9f9f9;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+	
+	/* Image Gallery Placeholder */
     .image-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -245,35 +267,35 @@
       background: #45a049;
     }
 
-    ul {
-      padding-left: 20px;
-      margin-top: 1rem;
+    /* Form Styling */
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    ul li {
-      margin-bottom: 0.5rem;
+    form button {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
     }
 
-    /* Image Gallery */
-    .image-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
+    form button:hover {
+      background: #45a049;
     }
 
-    .image-placeholder {
-      background: #e0e0e0;
-      border: 2px dashed #bbb;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
       text-align: center;
-      font-size: 0.9rem;
-      color: #666;
+      padding: 1rem 0;
     }
-
-    /* Cards for Highlights */
+	
+	/* Cards for Highlights */
     .highlight-section {
       display: flex;
       gap: 1.5rem;
@@ -302,60 +324,88 @@
       padding: 1rem;
       color: #333;
     }
-
-    /* Footer */
-    footer {
-      background: #333;
-      color: #fff;
-      text-align: center;
-      padding: 1rem 0;
-    }
 	
 	html {
       scroll-behavior: smooth;
     }
-	</style>
-	</head>
+	
+	 /* Add this to your CSS */
+	  .anchor-offset {
+		position: relative;
+	  }
+
+	  #anchor-free-delivery {
+		content: '';
+		display: inline-block;
+		height: 200px; /* Adjust to your desired offset */
+		margin-top: -1000px; /* Same value as height to offset the content */
+		visibility: hidden; /* Keeps it invisible */
+	  }
+	  
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuButton = document.querySelector(".menu-button");
+      const navbar = document.querySelector(".navbar");
+      const businessInfo = document.querySelector(".business-info");
+      const hero = document.querySelector("#hero");
+
+      menuButton.addEventListener("click", () => {
+        [navbar, businessInfo].forEach((element) => {
+          element.classList.toggle("hidden");
+        });
+
+        // Adjust hero padding based on menu visibility
+        if (navbar.classList.contains("hidden")) {
+          hero.style.paddingTop = "10rem"; // Adjust padding when menu is hidden
+        } else {
+          hero.style.paddingTop = "35rem"; // Restore 35rem padding when menu is visible
+        }
+      });
+    });
+  </script>
+</head>
 <body>
   <!-- Fixed Header -->
   <div class="fixed-header">
-    <div class="header-container">
-      <!-- NAVIGATION BAR -->
-      <nav>
-        <ul>
-          <li><a href="indexMB.html">Home</a></li>
-          <li><a href="/about.html#about-hero">About Us</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="https://4553346.winrxrefill.com/default.aspx">Refills</a></li>
-          <li><a href="/compounding.html#hero">Compounding</a></li>
-          <li><a href="/indexMB.html#insurance">Insurance</a></li>
-          <li><a href="/contact.html#hero">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="business-info">
-        <div class="business-hours">
-          <p><strong>Business Hours:</strong><br>
+    <div class="header-content">
+      <button class="menu-button">Menu</button>
+      <div class="menu-toggle">
+        <!-- Navbar -->
+        <div class="navbar">
+          <a href="/indexMobile.html">Home</a>
+          <a href="/aboutMobile.html">About Us</a>
+          <a href="/servicesMobile.html">Products and Services</a>
+          <a href="/https://4553346.winrxrefill.com/default.aspx">Refills</a>
+          <a href="/compoundingMobile.html">Compounding</a>
+          <a href="/indexMobile.html#insurance">Insurance</a>
+          <a href="/contactMobile.html">Contact</a>
+        </div>
+        <!-- Business Info -->
+        <div class="business-info">
+          <div>
+            <strong>Business Hours:</strong><br>
             Mon - Fri: 8 AM - 7 PM<br>
             Sat: 9 AM - 2 PM<br>
-            Sun: Closed</p>
-        </div>
-        <div class="business-address">
-          <p><strong>Address:</strong><br>
+            Sun: Closed
+          </div>
+          <div>
+            <strong>Address:</strong><br>
             6624 Meadowbrook Dr<br>
-            Fort Worth, TX 76112</p>
-        </div>
-        <div class="business-phone">
-          <a href="tel:+18174516900">Call Us: (817) 451-6900</a>
+            Fort Worth, TX 76112
+          </div>
+          <div class="business-phone">
+            <a href="tel:+18174516900">Call Us: (817) 451-6900</a>
+          </div>
         </div>
       </div>
-      <!-- LOGO -->
-      <a href="indexMB.html">
-      <img src="http://meadowbrookpharmacytx.com/fassets/images/meadowbrook-logo.png" alt="Meadowbrook Pharmacy Logo" class="logo">
-	</a>
+    </div>
+    <!-- Logo -->
+    <div class="header-logo">
+      <img src="http://meadowbrookpharmacytx.com/fassets/images/meadowbrook-logo.png" alt="Meadowbrook Pharmacy Logo">
     </div>
   </div>
 
-  <main>
 	<section id="header-padder">
 	</section>
 
