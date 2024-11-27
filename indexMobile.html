@@ -143,11 +143,12 @@
 	  border: 2px solid #4caf50;
 	  border-radius: 5px;
 	  font-size: 4rem;
-	  background: #EFEFEF;
-	  color: #333;
 	  box-sizing: border-box;
 	  width: 100%;
 	  text-decoration: none; /*underline removal*/
+	  background: #4caf50; /* Primary green */
+	  color: #fff; /* White text */
+	  border: 2px solid #4caf50; /* Match background */
 	}
 	
 	a.btn, .business-phone a {
@@ -173,10 +174,11 @@
 
 	/* Business Info */
 	.business-info {
-	  flex-direction: column;
+	  display: flex;
+	  flex-direction: row;
 	  gap: 0.5rem;
 	  text-align: center;
-	  font-size: 1rem;
+	  font-size: 1.5rem;
 	  transition: max-height 0.3s ease, opacity 0.3s ease;
 	  max-height: 500px;
 	  overflow: hidden;
@@ -292,7 +294,7 @@
 	}
 
 	#header-padder {
-	  padding: 25rem 1rem 2rem;
+	  padding: 45rem 1rem 2rem;
 	}
 	
 	.map-container {
@@ -387,7 +389,7 @@
           <a href="/servicesMobile.html">Products and Services</a>
           <a href="https://4553346.winrxrefill.com/default.aspx">Refills</a>
           <a href="/compoundingMobile.html">Compounding</a>
-          <a href="/indexMobile.html#insurance">Insurance</a>
+          <a href="/indexMobile.html#services">Insurance</a> <!-- point to services because of offset -->
           <a href="/contactMobile.html">Contact</a>
         </div>
         <!-- Business Info -->
@@ -404,11 +406,14 @@
 				6624 Meadowbrook Dr<br>
 				Fort Worth, TX 76112
 			  </a>
-			</div>
-          <div class="business-phone">
+		  </div>
+          
+        </div>
+		<div class="business-info">
+			<div class="business-phone">
             <a href="tel:+18174516900">Call Us: (817) 451-6900</a>
           </div>
-        </div>
+		  </div>
       </div>
     </div>
     <!-- Logo -->
@@ -502,18 +507,6 @@
       <a href="/compounding.html" class="btn" target="_blank">Learn More</a>
     </section>
 
-    <section id="insurance" class="container">
-      <h2>Medicare and Insurance</h2>
-      <p>We accept most major insurance plans, including Medicare. Our team is here to assist you with claims and coverage questions.</p>
-      <ul>
-        <li>Medicare Part D</li>
-        <li>Private Insurance Plans</li>
-        <li>Flexible Spending Accounts</li>
-      </ul>
-      <p>Not sure if your plan is accepted? <a href="#contact">Contact us</a> for assistance.</p>
-    </section>
-
-	
 	<section id = "contact" class="container">
 		<h2>Contact Us</h2>
 		<!-- modify this form HTML and place wherever you want your form -->
@@ -558,6 +551,17 @@
 		</iframe>
 	  </div>
 	</div>
+	
+	<section id="insurance" class="container">
+      <h2>Medicare and Insurance</h2>
+      <p>We accept most major insurance plans, including Medicare. Our team is here to assist you with claims and coverage questions.</p>
+      <ul>
+        <li>Medicare Part D</li>
+        <li>Private Insurance Plans</li>
+        <li>Flexible Spending Accounts</li>
+      </ul>
+      <p>Not sure if your plan is accepted? <a href="#contact">Contact us</a> for assistance.</p>
+    </section>
 </body>
 <footer>
     <div class="container">
