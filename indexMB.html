@@ -327,11 +327,17 @@
   
   <script>
 	  document.addEventListener("DOMContentLoaded", () => {
-		// Use `matchMedia` for more reliable detection
+		// Use `matchMedia` for reliable mobile detection
 		const isMobile = window.matchMedia("(max-width: 800px)").matches;
 
 		if (isMobile) {
-		  window.location.href = "indexMobile.html";
+		  // Create a meta element for the refresh
+		  const metaRefresh = document.createElement("meta");
+		  metaRefresh.httpEquiv = "refresh";
+		  metaRefresh.content = "0; url=indexMobile.html";
+
+		  // Append the meta tag to the head of the document
+		  document.head.appendChild(metaRefresh);
 		}
 	  });
 	</script>
@@ -519,7 +525,7 @@
 	
   <footer>
     <div class="container">
-      <p>&copy; 2024 Meadowbrook Pharmacy & MoAbTech. All rights reserved.</p>
+      <p>&copy; 2024 Meadowbrook Pharmacy & MoAbTech. All rights reserved. 1</p>
     </div>
   </footer>
 </body>
