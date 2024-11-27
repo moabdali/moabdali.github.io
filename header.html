@@ -1,19 +1,68 @@
-<header class="floating-header">
-  <div class="container">
-    <a href="indexMB.html">
-      <img src="http://meadowbrookpharmacytx.com/fassets/images/meadowbrook-logo.png" alt="Meadowbrook Pharmacy Logo" class="logo">
-    </a>
-    
-    <nav>
-      <ul>
-        <li><a href="indexMB.html">Home</a></li>
-        <li><a href="/about.html">About Us</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="/indexMB.html#refills">Refills</a></li>
-        <li><a href="/compounding.html">Compounding</a></li>
-        <li><a href="/indexMB.html#insurance">Insurance</a></li>
-        <li><a href="/contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<link rel="stylesheet" href="css/header.css">
+
+<!-- Fixed Header -->
+	<div class="fixed-header">
+		<div class="header-content">
+		  
+		  <div class="menu-toggle">
+			<button class="menu-button">Show/Hide Menu</button>
+			<!-- Navbar -->
+			<div class="navbar">
+			  <a href="/indexMobile.html">Home</a>
+			  <a href="/aboutMobile.html">About Us</a>
+			  <a href="/servicesMobile.html">Products and Services</a>
+			  <a href="/https://4553346.winrxrefill.com/default.aspx">Refills</a>
+			  <a href="/compoundingMobile.html">Compounding</a>
+			  <a href="/indexMobile.html#insurance">Insurance</a>
+			  <a href="/contactMobile.html">Contact</a>
+			</div>
+			<!-- Business Info -->
+			<div class="business-info">
+			  <div>
+				<strong>Business Hours:</strong><br>
+				Mon - Fri: 8 AM - 7 PM<br>
+				Sat: 9 AM - 2 PM<br>
+				Sun: Closed
+			  </div>
+			  <div>
+				<strong>Address:</strong><br>
+				6624 Meadowbrook Dr<br>
+				Fort Worth, TX 76112
+			  </div>
+			  <div class="business-phone">
+				<a href="tel:+18174516900">Call Us: (817) 451-6900</a>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	
+		<!-- Logo -->
+		<div class="header-logo">
+		  <img src="http://meadowbrookpharmacytx.com/fassets/images/meadowbrook-logo.png" alt="Meadowbrook Pharmacy Logo">
+		</div>
+	</div>
+	
+	<section id="header-padder"></section>
+	
+	<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const menuButton = document.querySelector(".menu-button");
+      const navbar = document.querySelector(".navbar");
+      const businessInfo = document.querySelector(".business-info");
+      const hero = document.querySelector("#hero");
+
+      menuButton.addEventListener("click", () => {
+        [navbar, businessInfo].forEach((element) => {
+          element.classList.toggle("hidden");
+        });
+		
+        // Adjust hero padding based on menu visibility
+        if (navbar.classList.contains("hidden")) {
+          hero.style.paddingTop = "1rem"; // Adjust padding when menu is hidden
+        } else {
+          hero.style.paddingTop = "35rem"; // Restore 35rem padding when menu is visible
+		  window.scrollTo(0, 0);
+        }
+      });
+    });
+  </script>
