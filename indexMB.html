@@ -22,6 +22,7 @@
       z-index: 1000;
       background: #f4f4f4;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	  min-width: 920px; /* Sets the minimum width */
     }
 
     .fixed-header .header-container {
@@ -29,6 +30,7 @@
       flex-direction: column;
       align-items: center;
       padding: 1rem 0;
+	  
     }
 
     .fixed-header nav ul {
@@ -322,25 +324,16 @@
 		border: 0;
 		border-radius: 8px;
 	  }
-  
+		
+		
+	  body {
+		min-width: 920px; /* Sets the minimum width */
+	  }
+	  
+
   </style>
   
-  <script>
-	  document.addEventListener("DOMContentLoaded", () => {
-		// Use `matchMedia` for reliable mobile detection
-		const isMobile = window.matchMedia("(max-width: 800px)").matches;
 
-		if (isMobile) {
-		  // Create a meta element for the refresh
-		  const metaRefresh = document.createElement("meta");
-		  metaRefresh.httpEquiv = "refresh";
-		  metaRefresh.content = "0; url=indexMobile.html";
-
-		  // Append the meta tag to the head of the document
-		  document.head.appendChild(metaRefresh);
-		}
-	  });
-	</script>
   
 </head>
 <body>
