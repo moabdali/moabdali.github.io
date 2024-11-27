@@ -284,6 +284,42 @@
 	#header-padder {
 	  padding: 25rem 1rem 2rem;
 	}
+	
+	.map-container {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 1rem;
+    max-width: 800px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .map-container h2 {
+    margin-bottom: 1rem;
+    color: #4caf50;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  .map-frame {
+    overflow: hidden;
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+
+  .map-frame iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 8px;
+  }
 	  
   </style>
   <script>
@@ -481,7 +517,17 @@
 	
   </main>
   
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3355.7557419379905!2d-97.215256!3d32.745675999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e7bae4229e8c7%3A0x4a0d7a7730df168c!2s6624%20Meadowbrook%20Dr%2C%20Fort%20Worth%2C%20TX%2076112!5e0!3m2!1sen!2sus!4v1732687046179!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <div class="map-container">
+  <h2>Our Location</h2>
+  <div class="map-frame">
+		<iframe 
+		  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3355.7557419379905!2d-97.215256!3d32.745675999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e7bae4229e8c7%3A0x4a0d7a7730df168c!2s6624%20Meadowbrook%20Dr%2C%20Fort%20Worth%2C%20TX%2076112!5e0!3m2!1sen!2sus!4v1732687046179!5m2!1sen!2sus" 
+		  allowfullscreen="" 
+		  loading="lazy" 
+		  referrerpolicy="no-referrer-when-downgrade">
+		</iframe>
+	  </div>
+	</div>
 </body>
 <footer>
     <div class="container">
