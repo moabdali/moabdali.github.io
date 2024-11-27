@@ -347,8 +347,21 @@
 </head>
 <body>
   <script>
-  location.reload();
-  </script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Check if the page has been reloaded before using sessionStorage
+    if (!sessionStorage.getItem("hasReloaded")) {
+      // Mark the reload as done
+      sessionStorage.setItem("hasReloaded", "true");
+      // Reload the page
+      location.reload();
+    } else {
+      // Clear the reload flag after 5 seconds
+      setTimeout(() => {
+        sessionStorage.removeItem("hasReloaded");
+      }, 5000); // 5000 milliseconds = 5 seconds
+    }
+  });
+</script>
   <!-- Fixed Header -->
   <div class="fixed-header">
     <div class="header-content">
@@ -536,7 +549,7 @@
 </body>
 <footer>
     <div class="container">
-      <p>&copy; 2024 Meadowbrook Pharmacy & MoAbTech. All rights reserved. 3</p>
+      <p>&copy; 2024 Meadowbrook Pharmacy & MoAbTech. All rights reserved. 4</p>
     </div>
   </footer>
 </html>
