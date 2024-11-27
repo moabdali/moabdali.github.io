@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Meadowbrook Pharmacy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     /* General Styles */
     body {
@@ -289,13 +290,15 @@
   </style>
   
   <script>
-    // Redirect to mobile version if the screen width is less than 800 pixels
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.innerWidth < 800) {
-        window.location.href = "indexMobile.html";
-      }
-    });
-  </script>
+	  document.addEventListener("DOMContentLoaded", () => {
+		// Use `matchMedia` for more reliable detection
+		const isMobile = window.matchMedia("(max-width: 800px)").matches;
+
+		if (isMobile) {
+		  window.location.href = "indexMobile.html";
+		}
+	  });
+	</script>
   
 </head>
 <body>
