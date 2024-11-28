@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hover Full-Size Image</title>
+  <title>Photos with Captions</title>
   <style>
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       margin: 0;
       background-color: #f4f4f4;
       font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: flex-start; /* Align content to the left */
+      align-items: center;
+      height: 100vh;
     }
     .photo-container {
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .photo-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .photo-frame {
-      width: 200px;
-      height: 200px;
       position: relative;
       overflow: hidden;
       transform: rotate(0deg); /* Default rotation */
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
     }
     .background {
       position: absolute;
@@ -50,28 +56,62 @@
     .hover-fullsize {
       display: none;
       position: absolute;
-      max-width: 400px;
-      max-height: 400px;
+      max-width: 600px;
+      max-height: 600px;
       border: 5px solid white;
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
       z-index: 100;
       pointer-events: none; /* Ensures it doesn't block cursor events */
     }
+    .caption {
+      margin-top: 10px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+      width: fit-content;
+    }
+    .caption a {
+      text-decoration: none;
+      color: #ffd700; /* Gold for links */
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .caption a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <div class="photo-container">
-    <div class="photo-frame" id="photo1">
-      <div class="background"></div>
-      <img class="image" src="" alt="Photo">
+    <div class="photo-section">
+      <div class="photo-frame" id="photo1">
+        <div class="background"></div>
+        <img class="image" src="" alt="Photo">
+      </div>
+      <div class="caption">
+        <a href="portraits.html" target="_blank">View Portraits</a>
+      </div>
     </div>
-    <div class="photo-frame" id="photo2">
-      <div class="background"></div>
-      <img class="image" src="" alt="Photo">
+    <div class="photo-section">
+      <div class="photo-frame" id="photo2">
+        <div class="background"></div>
+        <img class="image" src="" alt="Photo">
+      </div>
+      <div class="caption">
+        <a href="landscapes.html" target="_blank">View Landscapes</a>
+      </div>
     </div>
-    <div class="photo-frame" id="photo3">
-      <div class="background"></div>
-      <img class="image" src="" alt="Photo">
+    <div class="photo-section">
+      <div class="photo-frame" id="photo3">
+        <div class="background"></div>
+        <img class="image" src="" alt="Photo">
+      </div>
+      <div class="caption">
+        <a href="animals.html" target="_blank">View Animals</a>
+      </div>
     </div>
   </div>
 
@@ -89,13 +129,31 @@
 
     let maxPortrait = 5;
     let maxLandscape = 3;
-    let maxAnimal = 5;
+    let maxAnimal = 1;
 
     const photos = [
-      `/portraits/${getRandomInt(maxPortrait)}.jpg`,
-      `/landscapes/${getRandomInt(maxLandscape)}.jpg`,
-      `/animals/${getRandomInt(maxAnimal)}.jpg`
+      `/images/portraits/${getRandomInt(maxPortrait)}.jpg`,
+      `/images/landscapes/${getRandomInt(maxLandscape)}.jpg`,
+      `/images/animals/${getRandomInt(maxAnimal)}.jpg`
     ];
+
+    // Calculate the size of the photo frame based on screen height and diagonal formula
+    function calculateSize() {
+      const screenHeight = window.innerHeight;
+      const squareSide = (screenHeight / 3) / Math.sqrt(2); // Divide diagonal by 3 for three images
+      const photoFrames = document.querySelectorAll('.photo-frame');
+
+      photoFrames.forEach((frame) => {
+        frame.style.width = `${squareSide}px`;
+        frame.style.height = `${squareSide}px`;
+      });
+
+      const images = document.querySelectorAll('.image');
+      images.forEach((image) => {
+        image.style.maxWidth = `${squareSide}px`;
+        image.style.maxHeight = `${squareSide}px`;
+      });
+    }
 
     function applyHoverEffect() {
       const hoverFullsize = document.getElementById('hover-fullsize');
@@ -117,17 +175,6 @@
 
           // Set the background to the same image
           backgroundElement.style.backgroundImage = `url(${photo})`;
-
-          // Determine scaling
-          if (imgWidth > imgHeight) {
-            // Landscape image: fit width to 200px
-            imgElement.style.width = "200px";
-            imgElement.style.height = "auto";
-          } else {
-            // Portrait or square image: fit height to 200px
-            imgElement.style.width = "auto";
-            imgElement.style.height = "200px";
-          }
 
           // Apply random rotation to the frame
           frameElement.style.transform = `rotate(${randomAngle()}deg)`;
@@ -151,7 +198,12 @@
       });
     }
 
-    applyHoverEffect();
+    // Recalculate size on load and window resize
+    window.addEventListener('resize', calculateSize);
+    window.addEventListener('load', () => {
+      calculateSize();
+      applyHoverEffect();
+    });
   </script>
 </body>
 </html>
