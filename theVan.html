@@ -9,29 +9,54 @@
       margin: 0;
       background-color: #f4f4f4;
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: flex-start; /* Align content to the left */
-      align-items: center;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Header and Footer */
+    .header, .footer {
+      height: 10%;
+      background-color: #cccccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    /* Main Content Area */
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
     .photo-container {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-around;
       height: 100%;
+      width: auto;
+      padding-left: 20px;
     }
+
     .photo-section {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
+
     .photo-frame {
       position: relative;
       overflow: hidden;
       transform: rotate(0deg); /* Default rotation */
       transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
     }
+
     .background {
       position: absolute;
       top: 0;
@@ -43,6 +68,7 @@
       filter: blur(15px);
       z-index: 1;
     }
+
     .image {
       position: absolute;
       top: 50%;
@@ -52,17 +78,7 @@
       max-height: 100%;
       z-index: 2;
     }
-    /* Full-size hover image */
-    .hover-fullsize {
-      display: none;
-      position: absolute;
-      max-width: 600px;
-      max-height: 600px;
-      border: 5px solid white;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-      z-index: 100;
-      pointer-events: none; /* Ensures it doesn't block cursor events */
-    }
+
     .caption {
       margin-top: 10px;
       text-align: center;
@@ -73,50 +89,59 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
       width: fit-content;
     }
+
     .caption a {
       text-decoration: none;
       color: #ffd700; /* Gold for links */
       font-size: 16px;
       font-weight: bold;
     }
+
     .caption a:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <div class="photo-container">
-    <div class="photo-section">
-      <div class="photo-frame" id="photo1">
-        <div class="background"></div>
-        <img class="image" src="" alt="Photo">
+  <div class="header">
+    Header Section
+  </div>
+
+  <div class="main">
+    <div class="photo-container">
+      <div class="photo-section">
+        <div class="photo-frame" id="photo1">
+          <div class="background"></div>
+          <img class="image" src="" alt="Photo">
+        </div>
+        <div class="caption">
+          <a href="portraits.html" target="_blank">View Portraits</a>
+        </div>
       </div>
-      <div class="caption">
-        <a href="portraits.html" target="_blank">View Portraits</a>
+      <div class="photo-section">
+        <div class="photo-frame" id="photo2">
+          <div class="background"></div>
+          <img class="image" src="" alt="Photo">
+        </div>
+        <div class="caption">
+          <a href="landscapes.html" target="_blank">View Landscapes</a>
+        </div>
       </div>
-    </div>
-    <div class="photo-section">
-      <div class="photo-frame" id="photo2">
-        <div class="background"></div>
-        <img class="image" src="" alt="Photo">
-      </div>
-      <div class="caption">
-        <a href="landscapes.html" target="_blank">View Landscapes</a>
-      </div>
-    </div>
-    <div class="photo-section">
-      <div class="photo-frame" id="photo3">
-        <div class="background"></div>
-        <img class="image" src="" alt="Photo">
-      </div>
-      <div class="caption">
-        <a href="animals.html" target="_blank">View Animals</a>
+      <div class="photo-section">
+        <div class="photo-frame" id="photo3">
+          <div class="background"></div>
+          <img class="image" src="" alt="Photo">
+        </div>
+        <div class="caption">
+          <a href="animals.html" target="_blank">View Animals</a>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Full-size hover image -->
-  <img id="hover-fullsize" class="hover-fullsize" src="" alt="Full-size Hover">
+  <div class="footer">
+    Footer Section
+  </div>
 
   <script>
     function getRandomInt(max) {
@@ -137,10 +162,9 @@
       `/animals/${getRandomInt(maxAnimal)}.jpg`
     ];
 
-    // Calculate the size of the photo frame based on screen height and diagonal formula
     function calculateSize() {
-      const screenHeight = window.innerHeight;
-      const squareSide = (screenHeight / 3) / Math.sqrt(2); // Divide diagonal by 3 for three images
+      const mainHeight = window.innerHeight * 0.8; // 4/5 of the total height
+      const squareSide = (mainHeight / 3) / Math.sqrt(2); // Divide diagonal by 3 for three images
       const photoFrames = document.querySelectorAll('.photo-frame');
 
       photoFrames.forEach((frame) => {
@@ -156,8 +180,6 @@
     }
 
     function applyHoverEffect() {
-      const hoverFullsize = document.getElementById('hover-fullsize');
-
       photos.forEach((photo, index) => {
         const frameElement = document.getElementById(`photo${index + 1}`);
         const backgroundElement = frameElement.querySelector('.background');
@@ -170,31 +192,9 @@
         const tempImage = new Image();
         tempImage.src = photo;
         tempImage.onload = () => {
-          const imgWidth = tempImage.width;
-          const imgHeight = tempImage.height;
-
-          // Set the background to the same image
           backgroundElement.style.backgroundImage = `url(${photo})`;
-
-          // Apply random rotation to the frame
           frameElement.style.transform = `rotate(${randomAngle()}deg)`;
         };
-
-        // Add hover event listeners
-        frameElement.addEventListener('mouseenter', () => {
-          hoverFullsize.src = photo; // Set the full-size image source
-          hoverFullsize.style.display = 'block';
-        });
-
-        frameElement.addEventListener('mousemove', (event) => {
-          // Position the full-size image near the cursor
-          hoverFullsize.style.left = `${event.pageX + 20}px`;
-          hoverFullsize.style.top = `${event.pageY + 20}px`;
-        });
-
-        frameElement.addEventListener('mouseleave', () => {
-          hoverFullsize.style.display = 'none'; // Hide the full-size image
-        });
       });
     }
 
