@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hover Full-Size Image</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
+    .photo-container {
+      display: flex;
+      gap: 20px;
+    }
+    .photo-frame {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+      transform: rotate(0deg); /* Default rotation */
+      transition: transform 0.3s ease;
+    }
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(15px);
+      z-index: 1;
+    }
+    .image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 100%;
+      max-height: 100%;
+      z-index: 2;
+    }
+    /* Full-size hover image */
+    .hover-fullsize {
+      display: none;
+      position: absolute;
+      max-width: 400px;
+      max-height: 400px;
+      border: 5px solid white;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      z-index: 100;
+      pointer-events: none; /* Ensures it doesn't block cursor events */
+    }
+  </style>
+</head>
+<body>
+  <div class="photo-container">
+    <div class="photo-frame" id="photo1">
+      <div class="background"></div>
+      <img class="image" src="" alt="Photo">
+    </div>
+    <div class="photo-frame" id="photo2">
+      <div class="background"></div>
+      <img class="image" src="" alt="Photo">
+    </div>
+    <div class="photo-frame" id="photo3">
+      <div class="background"></div>
+      <img class="image" src="" alt="Photo">
+    </div>
+  </div>
+
+  <!-- Full-size hover image -->
+  <img id="hover-fullsize" class="hover-fullsize" src="" alt="Full-size Hover">
+
+  <script>
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max) + 1;
+    }
+
+    function randomAngle() {
+      return Math.random() * 60 - 30; // Random angle between -30 and 30 degrees
+    }
+
+    let maxPortrait = 5;
+    let maxLandscape = 3;
+    let maxAnimal = 5;
+
+    const photos = [
+      `/images/portraits/${getRandomInt(maxPortrait)}.jpg`,
+      `/images/landscapes/${getRandomInt(maxLandscape)}.jpg`,
+      `/images/animals/${getRandomInt(maxAnimal)}.jpg`
+    ];
+
+    function applyHoverEffect() {
+      const hoverFullsize = document.getElementById('hover-fullsize');
+
+      photos.forEach((photo, index) => {
+        const frameElement = document.getElementById(`photo${index + 1}`);
+        const backgroundElement = frameElement.querySelector('.background');
+        const imgElement = frameElement.querySelector('.image');
+
+        // Load the image dynamically
+        imgElement.src = photo;
+
+        // Create a new image to calculate dimensions
+        const tempImage = new Image();
+        tempImage.src = photo;
+        tempImage.onload = () => {
+          const imgWidth = tempImage.width;
+          const imgHeight = tempImage.height;
+
+          // Set the background to the same image
+          backgroundElement.style.backgroundImage = `url(${photo})`;
+
+          // Determine scaling
+          if (imgWidth > imgHeight) {
+            // Landscape image: fit width to 200px
+            imgElement.style.width = "200px";
+            imgElement.style.height = "auto";
+          } else {
+            // Portrait or square image: fit height to 200px
+            imgElement.style.width = "auto";
+            imgElement.style.height = "200px";
+          }
+
+          // Apply random rotation to the frame
+          frameElement.style.transform = `rotate(${randomAngle()}deg)`;
+        };
+
+        // Add hover event listeners
+        frameElement.addEventListener('mouseenter', () => {
+          hoverFullsize.src = photo; // Set the full-size image source
+          hoverFullsize.style.display = 'block';
+        });
+
+        frameElement.addEventListener('mousemove', (event) => {
+          // Position the full-size image near the cursor
+          hoverFullsize.style.left = `${event.pageX + 20}px`;
+          hoverFullsize.style.top = `${event.pageY + 20}px`;
+        });
+
+        frameElement.addEventListener('mouseleave', () => {
+          hoverFullsize.style.display = 'none'; // Hide the full-size image
+        });
+      });
+    }
+
+    applyHoverEffect();
+  </script>
+</body>
+</html>
