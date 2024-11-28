@@ -210,16 +210,14 @@
           const maxHeight = screenHeight / 4;
           const minHeight = frameElement.offsetHeight * 2;
 
-          const aspectRatio = tempImage.width / tempImage.height;
-
-          // Enforce minimum and maximum height
+          // Enforce minimum and maximum hover image dimensions
           let hoverHeight = Math.max(minHeight, Math.min(maxHeight, tempImage.height));
-          let hoverWidth = hoverHeight * aspectRatio;
+          let hoverWidth = hoverHeight * (tempImage.width / tempImage.height);
 
-          // Adjust width if it exceeds the screen width
+          // Adjust dimensions to stay within the screen width
           if (hoverWidth > screenWidth) {
             hoverWidth = screenWidth;
-            hoverHeight = hoverWidth / aspectRatio;
+            hoverHeight = hoverWidth / (tempImage.width / tempImage.height);
           }
 
           hoverImage.style.width = `${hoverWidth}px`;
@@ -240,7 +238,7 @@
           const cursorY = event.pageY;
           const cursorX = event.pageX;
 
-          // Check if hover image would go off the bottom of the screen
+          // Ensure hover image doesn't go off the screen
           const hoverBottom = cursorY + 20 + hoverImage.offsetHeight;
           if (hoverBottom > window.innerHeight) {
             hoverImage.style.top = `${cursorY - hoverImage.offsetHeight - 20}px`; // Position above
