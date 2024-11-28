@@ -79,6 +79,28 @@
       z-index: 2;
     }
 
+    .caption {
+      margin-top: 10px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+      width: fit-content;
+    }
+
+    .caption a {
+      text-decoration: none;
+      color: #ffd700; /* Gold for links */
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .caption a:hover {
+      text-decoration: underline;
+    }
+
     .hover-image {
       display: none;
       position: absolute;
@@ -98,17 +120,26 @@
           <div class="background"></div>
           <img class="image" src="" alt="Photo">
         </div>
+        <div class="caption">
+          <a href="portraits.html" target="_blank">View Portraits</a>
+        </div>
       </div>
       <div class="photo-section">
         <div class="photo-frame" id="photo2">
           <div class="background"></div>
           <img class="image" src="" alt="Photo">
         </div>
+        <div class="caption">
+          <a href="landscapes.html" target="_blank">View Landscapes</a>
+        </div>
       </div>
       <div class="photo-section">
         <div class="photo-frame" id="photo3">
           <div class="background"></div>
           <img class="image" src="" alt="Photo">
+        </div>
+        <div class="caption">
+          <a href="animals.html" target="_blank">View Animals</a>
         </div>
       </div>
     </div>
