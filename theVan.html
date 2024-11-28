@@ -14,7 +14,6 @@
       flex-direction: column;
     }
 
-    /* Header and Footer */
     .header, .footer {
       height: 10%;
       background-color: #cccccc;
@@ -26,7 +25,6 @@
       font-weight: bold;
     }
 
-    /* Main Content Area */
     .main {
       flex: 1;
       display: flex;
@@ -53,8 +51,10 @@
     .photo-frame {
       position: relative;
       overflow: hidden;
-      transform: rotate(0deg); /* Default rotation */
+      transform: rotate(0deg);
       transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease;
+      width: 200px;
+      height: 200px;
     }
 
     .background {
@@ -74,32 +74,11 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      max-width: 100%;
+      max-height: 100%;
       z-index: 2;
     }
 
-    .caption {
-      margin-top: 10px;
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
-      color: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-      width: fit-content;
-    }
-
-    .caption a {
-      text-decoration: none;
-      color: #ffd700; /* Gold for links */
-      font-size: 16px;
-      font-weight: bold;
-    }
-
-    .caption a:hover {
-      text-decoration: underline;
-    }
-
-    /* Full-size hover image */
     .hover-image {
       display: none;
       position: absolute;
@@ -111,10 +90,7 @@
   </style>
 </head>
 <body>
-  <div class="header">
-    Header Section
-  </div>
-
+  <div class="header">Header Section</div>
   <div class="main">
     <div class="photo-container">
       <div class="photo-section">
@@ -122,17 +98,11 @@
           <div class="background"></div>
           <img class="image" src="" alt="Photo">
         </div>
-        <div class="caption">
-          <a href="portraits.html" target="_blank">View Portraits</a>
-        </div>
       </div>
       <div class="photo-section">
         <div class="photo-frame" id="photo2">
           <div class="background"></div>
           <img class="image" src="" alt="Photo">
-        </div>
-        <div class="caption">
-          <a href="landscapes.html" target="_blank">View Landscapes</a>
         </div>
       </div>
       <div class="photo-section">
@@ -140,18 +110,10 @@
           <div class="background"></div>
           <img class="image" src="" alt="Photo">
         </div>
-        <div class="caption">
-          <a href="animals.html" target="_blank">View Animals</a>
-        </div>
       </div>
     </div>
   </div>
-
-  <div class="footer">
-    Footer Section
-  </div>
-
-  <!-- Full-size hover image -->
+  <div class="footer">Footer Section</div>
   <img id="hover-image" class="hover-image" src="" alt="Hover Image">
 
   <script>
@@ -163,90 +125,86 @@
       return Math.random() * 60 - 30; // Random angle between -30 and 30 degrees
     }
 
-    let maxPortrait = 5;
-    let maxLandscape = 3;
-    let maxAnimal = 1;
-
     const photos = [
-      `/portraits/${getRandomInt(maxPortrait)}.jpg`,
-      `/landscapes/${getRandomInt(maxLandscape)}.jpg`,
-      `/animals/${getRandomInt(maxAnimal)}.jpg`
+      `/portraits/${getRandomInt(5)}.jpg`,
+      `/landscapes/${getRandomInt(3)}.jpg`,
+      `/animals/${getRandomInt(5)}.jpg`
     ];
 
-    function calculateSize() {
-      const mainHeight = window.innerHeight * 0.8; // 4/5 of the total height
-      const squareSide = (mainHeight / 3) / Math.sqrt(2); // Divide diagonal by 3 for three images
-      const photoFrames = document.querySelectorAll('.photo-frame');
+    function loadImagesWithDebug() {
+      console.log("Starting image loading...");
 
-      photoFrames.forEach((frame) => {
-        frame.style.width = `${squareSide}px`;
-        frame.style.height = `${squareSide}px`;
-      });
+      return Promise.all(
+        photos.map((photo, index) => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            console.log(`Attempting to load image: ${photo}`);
+            img.src = photo;
 
-      const images = document.querySelectorAll('.image');
-      images.forEach((image) => {
-        image.style.maxWidth = "100%";
-        image.style.maxHeight = "100%";
-      });
+            img.onload = () => {
+              console.log(`Image ${photo} loaded successfully.`);
+              resolve(photo);
+            };
+
+            img.onerror = () => {
+              console.error(`Failed to load image: ${photo}`);
+              resolve("https://via.placeholder.com/300"); // Fallback placeholder
+            };
+          });
+        })
+      );
     }
 
-    function applyHoverEffect() {
+    function applyHoverEffect(images) {
       const hoverImage = document.getElementById('hover-image');
 
-      photos.forEach((photo, index) => {
+      images.forEach((photo, index) => {
         const frameElement = document.getElementById(`photo${index + 1}`);
-        const backgroundElement = frameElement.querySelector('.background');
         const imgElement = frameElement.querySelector('.image');
+        const backgroundElement = frameElement.querySelector('.background');
 
-        // Load the image dynamically
+        console.log(`Setting image for frame ${index + 1}: ${photo}`);
         imgElement.src = photo;
+        backgroundElement.style.backgroundImage = `url(${photo})`;
 
-        // Create a new image to calculate dimensions
-        const tempImage = new Image();
-        tempImage.src = photo;
-        tempImage.onload = () => {
+        frameElement.style.transform = `rotate(${randomAngle()}deg)`; // Rotate frame
+
+        // Add hover events
+        frameElement.addEventListener('mouseenter', () => {
+          hoverImage.src = photo;
+
           const screenHeight = window.innerHeight;
           const screenWidth = window.innerWidth;
+          const photoSquareHeight = frameElement.offsetHeight;
+          const minHeight = photoSquareHeight * 2;
           const maxHeight = screenHeight / 4;
-          const minHeight = frameElement.offsetHeight * 2;
 
-          // Enforce minimum and maximum hover image dimensions
-          let hoverHeight = Math.max(minHeight, Math.min(maxHeight, tempImage.height));
-          let hoverWidth = hoverHeight * (tempImage.width / tempImage.height);
+          const aspectRatio = imgElement.naturalWidth / imgElement.naturalHeight;
 
-          // Adjust dimensions to stay within the screen width
+          let hoverHeight = Math.max(minHeight, Math.min(maxHeight, imgElement.naturalHeight));
+          let hoverWidth = hoverHeight * aspectRatio;
+
           if (hoverWidth > screenWidth) {
             hoverWidth = screenWidth;
-            hoverHeight = hoverWidth / (tempImage.width / tempImage.height);
+            hoverHeight = hoverWidth / aspectRatio;
           }
 
           hoverImage.style.width = `${hoverWidth}px`;
           hoverImage.style.height = `${hoverHeight}px`;
-
-          // Set the background
-          backgroundElement.style.backgroundImage = `url(${photo})`;
-          frameElement.style.transform = `rotate(${randomAngle()}deg)`;
-        };
-
-        // Hover events
-        frameElement.addEventListener('mouseenter', () => {
-          hoverImage.src = photo;
           hoverImage.style.display = 'block';
+          console.log(`Hovering on image: ${photo}`);
         });
 
         frameElement.addEventListener('mousemove', (event) => {
-          const cursorY = event.pageY;
-          const cursorX = event.pageX;
+          const hoverBottom = event.pageY + 20 + hoverImage.offsetHeight;
 
-          // Ensure hover image doesn't go off the screen
-          const hoverBottom = cursorY + 20 + hoverImage.offsetHeight;
           if (hoverBottom > window.innerHeight) {
-            hoverImage.style.top = `${cursorY - hoverImage.offsetHeight - 20}px`; // Position above
+            hoverImage.style.top = `${event.pageY - hoverImage.offsetHeight - 20}px`; // Above cursor
           } else {
-            hoverImage.style.top = `${cursorY + 20}px`; // Default below
+            hoverImage.style.top = `${event.pageY + 20}px`; // Below cursor
           }
 
-          hoverImage.style.left = `${cursorX + 20}px`;
+          hoverImage.style.left = `${event.pageX + 20}px`;
         });
 
         frameElement.addEventListener('mouseleave', () => {
@@ -255,12 +213,14 @@
       });
     }
 
-    // Recalculate size on load and window resize
-    window.addEventListener('resize', calculateSize);
-    window.addEventListener('load', () => {
-      calculateSize();
-      applyHoverEffect();
-    });
+    loadImagesWithDebug()
+      .then((loadedImages) => {
+        console.log("All images loaded successfully. Applying hover effects...");
+        applyHoverEffect(loadedImages);
+      })
+      .catch((error) => {
+        console.error("Error loading some images. Please check your file paths.", error);
+      });
   </script>
 </body>
 </html>
