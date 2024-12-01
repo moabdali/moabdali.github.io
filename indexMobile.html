@@ -151,6 +151,12 @@
 	  border: 2px solid #4caf50; /* Match background */
 	}
 	
+	.button1 {
+	background-color: #FFF;
+	color: #000;
+	}
+	
+	
 	a.btn, .business-phone a {
 	  display: inline-block;
       padding: 0.75rem 1.5rem;
@@ -360,6 +366,48 @@
 <body>
   
     <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const MOBILE_SITE_URL = "indexMobile.html";
+      const DESKTOP_SITE_URL = "indexMB.html";
+
+      // Check local storage for preference
+      const preference = localStorage.getItem("sitePreference");
+
+      // Detect mobile user agents
+      const isMobileUserAgent = /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+
+      // Handle redirection logic
+      if (!preference) {
+        if (isMobileUserAgent && location.pathname !== `/${MOBILE_SITE_URL}`) {
+          // Redirect to mobile site if no preference is set and user agent is mobile
+          location.href = MOBILE_SITE_URL;
+        }
+      } else if (preference === "mobile" && location.pathname !== `/${MOBILE_SITE_URL}`) {
+        location.href = MOBILE_SITE_URL;
+      } else if (preference === "desktop" && location.pathname !== `/${DESKTOP_SITE_URL}`) {
+        location.href = DESKTOP_SITE_URL;
+      }
+
+      // Event listeners for buttons
+      const mobileButton = document.getElementById("useMobile");
+      const desktopButton = document.getElementById("useDesktop");
+
+      if (mobileButton) {
+        mobileButton.addEventListener("click", () => {
+          localStorage.setItem("sitePreference", "mobile");
+          location.href = MOBILE_SITE_URL;
+        });
+      }
+
+      if (desktopButton) {
+        desktopButton.addEventListener("click", () => {
+          localStorage.setItem("sitePreference", "desktop");
+          location.href = DESKTOP_SITE_URL;
+        });
+      }
+    });
+  
+		/*
 	  document.addEventListener("DOMContentLoaded", () => {
 		// Use `matchMedia` for reliable mobile detection
 		const isMobile = window.matchMedia("(min-width: 900px)").matches;
@@ -374,6 +422,7 @@
 		  document.head.appendChild(metaRefresh);
 		}
 	  });
+	  */
 	</script>
 
   <!-- Fixed Header -->
@@ -387,7 +436,7 @@
           <a href="/indexMobile.html">Home</a>
           <a href="/aboutMobile.html">About Us</a>
           <a href="/servicesMobile.html">Products and Services</a>
-          <a href="https://4553346.winrxrefill.com/default.aspx">Refills</a>
+          <a href="https://4553346.winrxrefill.com/">Refills</a>
           <a href="/compoundingMobile.html">Compounding</a>
           <a href="/indexMobile.html#insurance">Insurance</a>
           <a href="/contactMobile.html">Contact</a>
@@ -428,16 +477,18 @@
 	
     <!-- Hero Section -->
   <section id="hero">
-	<a href="https://4553346.winrxrefill.com/default.aspx" class="refill-btn">REFILL NOW</a>
+	<a href="https://4553346.winrxrefill.com/" class="refill-btn">REFILL NOW</a>
     <h1>Your Partner in Health</h1>
     <p>We provide personalized care, prescription refills, and custom compounding to keep you healthy and happy.</p>
   </section>
-	
+	<div>
+	<button id="useDesktop" class = "button button1" >Switch to Desktop Site</button>
+	</div>
 	<section id="services" class="container">
 	  <h2>Our Services</h2>
 	  <div class="services-grid">
 		<div class="service-item">
-		  <a href="https://4553346.winrxrefill.com/default.aspx">
+		  <a href="https://4553346.winrxrefill.com/">
 			<h3>Prescription Refills</h3>
 			<p>Convenient online and in-store options.</p>
 		  </a>
@@ -482,7 +533,7 @@
     <section id="refills" class="container">
       <h2>Online Prescription Refills</h2>
       <p>Refilling your prescriptions has never been easier. Use our secure online portal to manage your refills quickly and conveniently.</p>
-      <a href="https://4553346.winrxrefill.com/default.aspx" class="btn">Refill Now</a>
+      <a href="https://4553346.winrxrefill.com/" class="btn">Refill Now</a>
     </section>
 	
 	<section id="anchor-free-delivery">

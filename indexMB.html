@@ -337,6 +337,49 @@
   
 </head>
 <body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const MOBILE_SITE_URL = "indexMobile.html";
+      const DESKTOP_SITE_URL = "indexMB.html";
+
+      // Check local storage for preference
+      const preference = localStorage.getItem("sitePreference");
+
+      // Detect mobile user agents
+      const isMobileUserAgent = /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+
+      // Handle redirection logic
+      if (!preference) {
+        if (isMobileUserAgent && location.pathname !== `/${MOBILE_SITE_URL}`) {
+          // Redirect to mobile site if no preference is set and user agent is mobile
+          location.href = MOBILE_SITE_URL;
+        }
+      } else if (preference === "mobile" && location.pathname !== `/${MOBILE_SITE_URL}`) {
+        location.href = MOBILE_SITE_URL;
+      } else if (preference === "desktop" && location.pathname !== `/${DESKTOP_SITE_URL}`) {
+        location.href = DESKTOP_SITE_URL;
+      }
+
+      // Event listeners for buttons
+      const mobileButton = document.getElementById("useMobile");
+      const desktopButton = document.getElementById("useDesktop");
+
+      if (mobileButton) {
+        mobileButton.addEventListener("click", () => {
+          localStorage.setItem("sitePreference", "mobile");
+          location.href = MOBILE_SITE_URL;
+        });
+      }
+
+      if (desktopButton) {
+        desktopButton.addEventListener("click", () => {
+          localStorage.setItem("sitePreference", "desktop");
+          location.href = DESKTOP_SITE_URL;
+        });
+      }
+    });
+  </script>
   <!-- Fixed Header -->
   <div class="fixed-header">
     <div class="header-container">
@@ -346,7 +389,7 @@
           <li><a href="indexMB.html">Home</a></li>
           <li><a href="/about.html#about-hero">About Us</a></li>
           <li><a href="/services.html">Products and Services</a></li>
-          <li><a href="https://4553346.winrxrefill.com/default.aspx">Refills</a></li>
+          <li><a href="https://4553346.winrxrefill.com/">Refills</a></li>
           <li><a href="/compounding.html#hero">Compounding</a></li>
           <li><a href="/indexMB.html#insurance">Insurance</a></li>
           <li><a href="/contact.html#hero">Contact</a></li>
@@ -382,16 +425,16 @@
     <section id="hero">
       <h1>Your Partner in Health</h1>
       <p>We provide personalized care, prescription refills, and custom compounding to keep you healthy and happy.</p>
-      <a href="https://4553346.winrxrefill.com/default.aspx" class="btn">Refill Your Prescriptions Online</a>
+      <a href="https://4553346.winrxrefill.com/" class="btn">Refill Your Prescriptions Online</a>
     </section>
-	
-	<a href="/indexMobile.html">Small Screens</a>
+	<button id="useMobile">Switch to Phone View</button>
+	<!-- <a href="/indexMobile.html">Small Screens</a> -->
 	
 	<section id="services" class="container">
 	  <h2>Our Services</h2>
 	  <div class="services-grid">
 		<div class="service-item">
-		  <a href="https://4553346.winrxrefill.com/default.aspx">
+		  <a href="https://4553346.winrxrefill.com/">
 			<h3>Prescription Refills</h3>
 			<p>Convenient online and in-store options.</p>
 		  </a>
@@ -436,7 +479,7 @@
     <section id="refills" class="container">
       <h2>Online Prescription Refills</h2>
       <p>Refilling your prescriptions has never been easier. Use our secure online portal to manage your refills quickly and conveniently.</p>
-      <a href="https://4553346.winrxrefill.com/default.aspx" class="btn">Refill Now</a>
+      <a href="https://4553346.winrxrefill.com/" class="btn">Refill Now</a>
     </section>
 	
 	<section id="anchor-free-delivery">
