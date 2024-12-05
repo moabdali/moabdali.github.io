@@ -264,16 +264,16 @@
     }
 
     .image-placeholder {
-      background: #e0e0e0;
-      border: 2px dashed #bbb;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #666;
-    }
+	  background: #e0e0e0;
+	  border: 2px dashed #bbb;
+	  height: 150px; /* Placeholder height */
+	  width: 100%; /* Full width */
+	  background-size: cover; /* Ensures the image covers the container */
+	  background-position: center; /* Centers the image */
+	  background-repeat: no-repeat; /* Prevents tiling */
+	  box-sizing: border-box; /* Includes padding and border in the box size */
+	  overflow: hidden; /* Hides any overflowing content */
+	}
 
     /* Cards for Highlights */
     .highlight-section {
@@ -331,7 +331,7 @@
         <ul>
           <li><a href="indexMB.html">Home</a></li>
           <li><a href="/about.html#about-hero">About Us</a></li>
-          <li><a href="services.html">Services</a></li>
+          <li><a href="/services.html">Products and Services</a></li>
           <li><a href="https://4553346.winrxrefill.com/">Refills</a></li>
           <li><a href="/compounding.html#hero">Compounding</a></li>
           <li><a href="/indexMB.html#insurance">Insurance</a></li>
@@ -348,7 +348,8 @@
         <div class="business-address">
           <p><strong>Address:</strong><br>
             6624 Meadowbrook Dr<br>
-            Fort Worth, TX 76112</p>
+            Fort Worth, TX 76112<br>
+			Fax: 817-451-6901
         </div>
         <div class="business-phone">
           <a href="tel:+18174516900">Call Us: (817) 451-6900</a>
@@ -377,14 +378,21 @@
       Meadowbrook Pharmacy was founded in 2009 by <strong>Abdul and Myra Rasul</strong>, with a mission to bring back personalized care in an increasingly impersonal industry. Abdul, a seasoned pharmacist, and Myra saw a need for a pharmacy that prioritizes patients over profit, creating a trusted healthcare partner for the community.
     </p>
 
-    <h3>Our Team and Facilities</h3>
-    <div class="image-gallery">
-      <div class="image-placeholder">Photo of Abdul and Myra Rasul</div>
-      <div class="image-placeholder">Photo of Pharmacy Team</div>
-      <div class="image-placeholder">Exterior of Meadowbrook Pharmacy</div>
-      <div class="image-placeholder">Interior of Pharmacy Store</div>
-      <div class="image-placeholder">Helping a Customer</div>
-    </div>
+
+    
+    <section id="about">
+      <h3>Our Team and Facilities</h3>
+      <p>
+        Meadowbrook Pharmacy is an independent pharmacy in the DFW area, dedicated to providing personalized care, fast service, and the best prices. Our community-first approach ensures you and your family receive top-quality healthcare solutions tailored to your needs.
+      </p>
+      <div class="image-gallery">
+        <div class="image-placeholder" style="background-image: url('pharmacist.jpg');"> </div> <!-- pharmacy member -->
+        <div class="image-placeholder" style="background-image: url('pharmacistteam.jpg');"></div>
+		<div class="image-placeholder" style="background-image: url('insidepic.jpg');"> </div> <!-- inside image -->
+        <div class="image-placeholder" style="background-image: url('outsidepic.jpg');"></div>
+      </div>
+    </section>
+
 
     <h3>Our Mission</h3>
     <p>

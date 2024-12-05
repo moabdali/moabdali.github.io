@@ -228,17 +228,12 @@
     }
 
     .image-placeholder {
-	  background: #e0e0e0;
-	  border: 2px dashed #bbb;
-	  height: 150px;
-	  margin-bottom: 1rem;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  text-align: center;
-	  font-size: 0.9rem;
-	  color: #666;
-	  border-radius: 5px;
+	  width: 100%; /* Adjust width as needed */
+	  height: 200px; /* Adjust height as needed */
+	  border: 2px solid #ddd; /* Optional border for visibility */
+	  background-size: cover;
+	  background-position: center;
+	  background-repeat: no-repeat;
 	}
   </style>
 </head>
@@ -251,7 +246,7 @@
         <ul>
           <li><a href="indexMB.html">Home</a></li>
           <li><a href="/about.html#about-hero">About Us</a></li>
-          <li><a href="/services.html">Services</a></li>
+          <li><a href="/services.html">Products and Services</a></li>
           <li><a href="https://4553346.winrxrefill.com/">Refills</a></li>
           <li><a href="/compounding.html#hero">Compounding</a></li>
           <li><a href="/indexMB.html#insurance">Insurance</a></li>
@@ -268,7 +263,8 @@
         <div class="business-address">
           <p><strong>Address:</strong><br>
             6624 Meadowbrook Dr<br>
-            Fort Worth, TX 76112</p>
+            Fort Worth, TX 76112<br>
+			Fax: 817-451-6901
         </div>
         <div class="business-phone">
           <a href="tel:+18174516900">Call Us: (817) 451-6900</a>
@@ -304,12 +300,12 @@
 	  <div class="product-list">
 		<div class="product-item">
 		  <h3>Prescription Medications</h3>
-		  <div class="image-placeholder">Image: Prescription Medications</div>
+		  <div class="image-placeholder" style="background-image: url('prescriptions.webp');"> </div>
 		  <p>We provide a wide variety of prescription medications to meet your healthcare needs. Our pharmacy team ensures accurate dispensing and personalized support for every patient.</p>
 		</div>
 		<div class="product-item">
 		  <h3>Over-the-Counter Medications</h3>
-		  <div class="image-placeholder">Image: Over-the-Counter Medications</div>
+		  <div class="image-placeholder" style="background-image: url('otc.webp');"> </div>
 		  <ul>
 			<li>Pain relievers</li>
 			<li>Allergy relief</li>
@@ -319,12 +315,12 @@
 		</div>
 		<div class="product-item">
 		  <h3>Vitamins & Supplements</h3>
-		  <div class="image-placeholder">Image: Vitamins & Supplements</div>
+		  <div class="image-placeholder" style="background-image: url('vitamins.webp');"> </div>
 		  <p>Support your health with our range of multivitamins, probiotics, and specialty supplements tailored to various needs, including immunity, energy, and bone health.</p>
 		</div>
 		<div class="product-item">
 		  <h3>Medical Supplies</h3>
-		  <div class="image-placeholder">Image: Medical Supplies</div>
+		  <div class="image-placeholder" style="background-image: url('firstaid.webp');"> </div>
 		  <ul>
 			<li>Diabetic supplies</li>
 			<li>First aid kits</li>
@@ -334,22 +330,13 @@
 		</div>
 		<div class="product-item">
 		  <h3>Compounding Services</h3>
-		  <div class="image-placeholder">Image: Compounding Services</div>
+		  <div class="image-placeholder" style="background-image: url('compounding.webp');"> </div>
+
 		  <p>We specialize in customized medications, including flavor adjustments for children, allergen-free alternatives, and compounded formulas for specific medical needs.</p>
 		</div>
 		<div class="product-item">
-		  <h3>Vaccinations</h3>
-		  <div class="image-placeholder">Image: Vaccinations</div>
-		  <ul>
-			<li>Flu shots</li>
-			<li>COVID-19 vaccines</li>
-			<li>Shingles vaccine</li>
-			<li>Travel immunizations</li>
-		  </ul>
-		</div>
-		<div class="product-item">
 		  <h3>Free Delivery</h3>
-		  <div class="image-placeholder">Image: Free Delivery</div>
+		  <div class="image-placeholder" style="background-image: url('delivery.webp');"> </div>
 		  <p>Enjoy the convenience of free prescription delivery directly to your home or workplace.</p>
 		</div>
 	  </div>

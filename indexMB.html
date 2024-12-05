@@ -181,16 +181,18 @@
     }
 
     .image-placeholder {
-      background: #e0e0e0;
-      border: 2px dashed #bbb;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #666;
-    }
+	  background: #e0e0e0;
+	  border: 2px dashed #bbb;
+	  height: 150px; /* Placeholder height */
+	  width: 100%; /* Full width */
+	  background-size: cover; /* Ensures the image covers the container */
+	  background-position: center; /* Centers the image */
+	  background-repeat: no-repeat; /* Prevents tiling */
+	  box-sizing: border-box; /* Includes padding and border in the box size */
+	  overflow: hidden; /* Hides any overflowing content */
+	}
+	
+	
 	
 	.services-grid {
 	  display: grid;
@@ -406,7 +408,8 @@
 		  <strong>Address:</strong><br>
 		  <a href="https://www.google.com/maps?q=6624+Meadowbrook+Dr,+Fort+Worth,+TX+76112" target="_blank" rel="noopener noreferrer">
 			6624 Meadowbrook Dr<br>
-			Fort Worth, TX 76112
+			Fort Worth, TX 76112<br>
+			Fax: 817-451-6901
 		  </a>
 		</div>
         <div class="business-phone">
@@ -455,10 +458,6 @@
 		  <h3>Medication Consultations</h3>
 		  <p>Expert advice to ensure the best care.</p>
 		</div>
-		<div class="service-item">
-		  <h3>Vaccinations</h3>
-		  <p>Stay protected with our immunization services.</p>
-		</div>
 	  </div>
 	</section>
 	
@@ -468,10 +467,10 @@
         Meadowbrook Pharmacy is an independent pharmacy in the DFW area, dedicated to providing personalized care, fast service, and the best prices. Our community-first approach ensures you and your family receive top-quality healthcare solutions tailored to your needs.
       </p>
       <div class="image-gallery">
-        <div class="image-placeholder">Photo of Founders</div>
-        <div class="image-placeholder">Photo of Team</div>
-        <div class="image-placeholder">Exterior of Pharmacy</div>
-        <div class="image-placeholder">Interior of Pharmacy</div>
+        <div class="image-placeholder" style="background-image: url('pharmacist.jpg');"> </div> <!-- pharmacy member -->
+        <div class="image-placeholder" style="background-image: url('pharmacistteam.jpg');"></div>
+		<div class="image-placeholder" style="background-image: url('insidepic.jpg');"> </div> <!-- inside image -->
+        <div class="image-placeholder" style="background-image: url('outsidepic.jpg');"></div>
       </div>
       <a href="about.html" class="btn">Learn More</a>
     </section>

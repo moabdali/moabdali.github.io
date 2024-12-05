@@ -13,11 +13,15 @@
 	  color: #333;
 	}
 
+	
 	.container {
 	  max-width: 1200px;
 	  margin: 0 auto;
 	  padding: 1rem;
 	}
+
+	
+	
 
 	section {
 	  margin-bottom: 2rem;
@@ -50,7 +54,6 @@
 	  display: flex;
 	  flex-direction: column;
 	  align-items: center;
-	  font-size: 2rem;
 	}
 
 	.header-content {
@@ -213,6 +216,7 @@
 	  gap: 1rem;
 	}
 
+	/* old
 	.image-placeholder {
 	  background: #e0e0e0;
 	  border: 2px dashed #bbb;
@@ -223,12 +227,21 @@
 	  text-align: center;
 	  font-size: 0.9rem;
 	  color: #666;
+	} */
+	
+	.image-placeholder {
+	  width: 150px; /* Adjust width as needed */
+	  height: 150px; /* Adjust height as needed */
+	  border: 2px solid #ddd; /* Optional border for visibility */
+	  background-size: cover;
+	  background-position: center;
+	  background-repeat: no-repeat;
 	}
 
 	/* Services Grid */
 	.services-grid {
 	  display: grid;
-	  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	  grid-template-columns: 1;
 	  gap: 1.5rem;
 	  margin-top: 1rem;
 	}
@@ -299,10 +312,6 @@
 	  margin-top: -1000px;
 	  visibility: hidden;
 	}
-
-	#header-padder {
-	  padding: 45rem 1rem 2rem;
-	}
 	
 	.map-container {
     text-align: center;
@@ -339,6 +348,10 @@
     border: 0;
     border-radius: 8px;
   }
+  
+  #header-padder {
+	  padding: 25rem 1rem 2rem;
+	}
 	  
   </style>
   <script>
@@ -407,23 +420,6 @@
         });
       }
     });
-  
-		/*
-	  document.addEventListener("DOMContentLoaded", () => {
-		// Use `matchMedia` for reliable mobile detection
-		const isMobile = window.matchMedia("(min-width: 900px)").matches;
-
-		if (isMobile) {
-		  // Create a meta element for the refresh
-		  const metaRefresh = document.createElement("meta");
-		  metaRefresh.httpEquiv = "refresh";
-		  metaRefresh.content = "0; url=indexMB.html";
-
-		  // Append the meta tag to the head of the document
-		  document.head.appendChild(metaRefresh);
-		}
-	  });
-	  */
 	</script>
 
   <!-- Fixed Header -->
@@ -437,9 +433,6 @@
           <a href="/indexMobile.html">Home</a>
           <a href="/aboutMobile.html">About Us</a>
           <a href="/servicesMobile.html">Products and Services</a>
-          <a href="https://4553346.winrxrefill.com/">Refills</a>
-          <a href="/compoundingMobile.html">Compounding</a>
-          <a href="/indexMobile.html#insurance">Insurance</a>
           <a href="/contactMobile.html">Contact</a>
         </div>
         <!-- Business Info -->
@@ -454,8 +447,9 @@
 			  <strong>Address:</strong><br>
 			  <a href="https://www.google.com/maps?q=6624+Meadowbrook+Dr,+Fort+Worth,+TX+76112" target="_blank" rel="noopener noreferrer">
 				6624 Meadowbrook Dr<br>
-				Fort Worth, TX 76112
+				Fort Worth, TX 76112<br>
 			  </a>
+			  Fax: 817-451-6901
 		  </div>
           
         </div>
@@ -510,10 +504,6 @@
 		  <h3>Medication Consultations</h3>
 		  <p>Expert advice to ensure the best care.</p>
 		</div>
-		<div class="service-item">
-		  <h3>Vaccinations</h3>
-		  <p>Stay protected with our immunization services.</p>
-		</div>
 	  </div>
 	</section>
 	
@@ -523,12 +513,12 @@
         Meadowbrook Pharmacy is an independent pharmacy in the DFW area, dedicated to providing personalized care, fast service, and the best prices. Our community-first approach ensures you and your family receive top-quality healthcare solutions tailored to your needs.
       </p>
       <div class="image-gallery">
-        <div class="image-placeholder">Photo of Founders</div>
-        <div class="image-placeholder">Photo of Team</div>
-        <div class="image-placeholder">Exterior of Pharmacy</div>
-        <div class="image-placeholder">Interior of Pharmacy</div>
+        <div class="image-placeholder" style="background-image: url('pharmacist.jpg');"> </div> <!-- pharmacy member -->
+        <div class="image-placeholder" style="background-image: url('pharmacistteam.jpg');"></div>
+		<div class="image-placeholder" style="background-image: url('insidepic.jpg');"> </div> <!-- inside image -->
+        <div class="image-placeholder" style="background-image: url('outsidepic.jpg');"></div>
       </div>
-      <a href="about.html" class="btn">Learn More</a>
+      <a href="aboutMobile.html" class="btn">Learn More</a>
     </section>
 
     <section id="refills" class="container">
@@ -556,7 +546,7 @@
     <section id="compounding" class="container">
       <h2>Custom Compounding</h2>
       <p>We specialize in custom compounding to create medications tailored to your specific needs, whether for unique dosages, allergen-free alternatives, or flavoring options for children.</p>
-      <a href="/compounding.html" class="btn" target="_blank">Learn More</a>
+      <a href="/compoundingMobile.html" class="btn" target="_blank">Learn More</a>
     </section>
 
 	<section id = "contact" class="container">
@@ -612,7 +602,7 @@
         <li>Private Insurance Plans</li>
         <li>Flexible Spending Accounts</li>
       </ul>
-      <p>Not sure if your plan is accepted? <a href="#contact">Contact us</a> for assistance.</p>
+      <p>Not sure if your plan is accepted? <a href="contactMobile.html">Contact us</a> for assistance.</p>
     </section>
 </body>
 <footer>
