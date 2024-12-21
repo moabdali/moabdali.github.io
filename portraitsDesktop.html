@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Grid</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      color: #333;
+    }
+
+    .header {
+      height: 10vh;
+      min-height: 50px;
+      background-color: #cccccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .grid {
+	  display: grid;
+	  grid-template-columns: repeat(5, 1fr);
+	  grid-template-rows: repeat(5, 1fr);
+	  gap: 10px; /* Ensure both vertical and horizontal gaps */
+	  width: calc(100% - 20px); /* Adjust for gaps */
+	  max-width: calc(100% - 20px);
+	}
+
+	.grid-item {
+	  background-color: #e0e0e0;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  overflow: hidden;
+	  aspect-ratio: 1 / 1;
+	  font-family: "Comic Sans MS", cursive, sans-serif;
+	  font-size: 14px;
+	  text-align: center;
+	  padding: 2px;
+	  color: #555;
+	  box-sizing: border-box; /* Ensure padding doesn't interfere with size */
+	}
+
+    .grid-item img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .theme-toggle-button {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      cursor: pointer;
+      font-size: 24px;
+      background: none;
+      border: none;
+      color: inherit;
+      transition: color 0.3s;
+    }
+
+    .theme-toggle-button:hover {
+      color: #ffa500;
+    }
+
+    .fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .fullscreen img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    .fullscreen-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 1001;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="grid.html">Photo Grid</a>
+    </nav>
+    <button class="theme-toggle-button" id="theme-toggle">
+      <span id="theme-icon">&#x2600;</span>
+      <span id="theme-text">Dark Mode</span>
+    </button>
+  </div>
+
+  <div class="main">
+    <div class="grid" id="photo-grid">
+      <!-- Grid items will be dynamically populated -->
+    </div>
+  </div>
+
+  <script>
+    // Function to toggle theme
+    function setTheme(isDayMode) {
+      document.body.style.backgroundColor = isDayMode ? '#f4f4f4' : '#1e1e1e';
+      document.body.style.color = isDayMode ? '#333' : '#ddd';
+      document.getElementById('theme-icon').innerHTML = isDayMode ? '&#x2600;' : '&#x263e;';
+      document.getElementById('theme-text').textContent = isDayMode ? 'Dark Mode' : 'Light Mode';
+      localStorage.setItem('theme', isDayMode ? 'day' : 'night');
+    }
+
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    let isDayMode = localStorage.getItem('theme')
+      ? localStorage.getItem('theme') === 'day'
+      : !prefersDark;
+
+    setTheme(isDayMode);
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      isDayMode = !isDayMode;
+      setTheme(isDayMode);
+    });
+
+    // Function to generate random unique numbers
+    function getRandomUniqueNumbers(count, max) {
+      const numbers = new Set();
+      while (numbers.size < count) {
+        numbers.add(Math.floor(Math.random() * max));
+      }
+      return Array.from(numbers);
+    }
+
+    const inspirationalMessages = [
+      "Believe in yourself!",
+      "You are stronger than you think.",
+      "Every day is a new beginning.",
+      "Dream big, work hard.",
+      "You are capable of amazing things.",
+      "Stay positive, work hard, make it happen.",
+      "Success is no accident.",
+      "Keep moving forward.",
+      "Your potential is endless.",
+      "Be the change you wish to see in the world.",
+      "Happiness is a journey, not a destination.",
+      "You make a difference every day.",
+      "Take the risk or lose the chance.",
+      "Your only limit is your mind.",
+      "Stay strong, the weekend is coming.",
+      "Be kind, for everyone is fighting a hard battle.",
+      "You are your best investment.",
+      "The best time for new beginnings is now.",
+      "Chase your dreams with passion.",
+      "Courage is resistance to fear.",
+      "You are your greatest treasure.",
+      "A little progress each day adds up to big results.",
+      "You are unstoppable.",
+      "Do it with all your heart.",
+      "Mistakes are proof you are trying.",
+      "Focus on the good.",
+      "Kindness is free, sprinkle it everywhere.",
+      "Don’t stop until you’re proud.",
+      "You can and you will.",
+      "Positivity is contagious.",
+      "Keep going, you’re doing great.",
+      "Smile, you’ve got this!",
+      "Gratitude changes everything.",
+      "Push yourself, because no one else will.",
+      "Be fearless in the pursuit of what sets your soul on fire.",
+      "You’re doing better than you think.",
+      "The best is yet to come.",
+      "Small steps lead to big changes.",
+      "You are enough just as you are.",
+      "Be proud of how far you’ve come.",
+      "The sky is the limit.",
+      "Every moment is a fresh start.",
+      "Good vibes only.",
+      "Success is a journey, not a destination.",
+      "Your vibe attracts your tribe.",
+      "Make today count.",
+      "Live more, worry less.",
+      "You are braver than you believe."
+    ];
+
+    // Generate grid with random photos and messages
+    function populateGrid() {
+      const grid = document.getElementById('photo-grid');
+      const totalSquares = 25;
+      const photoCount = 15;
+      const randomSquares = getRandomUniqueNumbers(photoCount, totalSquares);
+      const randomPhotos = getRandomUniqueNumbers(photoCount, 25);
+
+      for (let i = 0; i < totalSquares; i++) {
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item');
+
+        if (randomSquares.includes(i)) {
+          const photoIndex = randomSquares.indexOf(i);
+          const img = document.createElement('img');
+          img.src = `portraits/${randomPhotos[photoIndex] + 1}.jpg`;
+
+          // Add click event to show fullscreen
+          img.addEventListener('click', () => showFullscreen(img.src));
+
+          gridItem.appendChild(img);
+        } else {
+          const message = inspirationalMessages[Math.floor(Math.random() * inspirationalMessages.length)];
+          gridItem.textContent = message;
+        }
+
+        grid.appendChild(gridItem);
+      }
+    }
+
+    function showFullscreen(src) {
+      // Create fullscreen container
+      const fullscreenContainer = document.createElement('div');
+      fullscreenContainer.classList.add('fullscreen');
+
+      // Create close button
+      const closeButton = document.createElement('button');
+      closeButton.classList.add('fullscreen-close');
+      closeButton.innerHTML = '&times;';
+      closeButton.addEventListener('click', () => {
+        document.body.removeChild(fullscreenContainer);
+      });
+
+      // Create image
+      const img = document.createElement('img');
+      img.src = src;
+
+      // Append elements
+      fullscreenContainer.appendChild(img);
+      fullscreenContainer.appendChild(closeButton);
+      document.body.appendChild(fullscreenContainer);
+    }
+
+    populateGrid();
+  </script>
+</body>
+</html>
