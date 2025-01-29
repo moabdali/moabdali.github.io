@@ -190,7 +190,7 @@
     /* Hero Section */
     #hero {
       text-align: center;
-      padding: 17rem 1rem 2rem;
+      padding: 14rem 1rem 2rem;
       background: linear-gradient(to bottom right, #4caf50, #45a049);
       color: #fff;
       transition: padding 0.3s ease;
@@ -542,6 +542,18 @@
         grid-template-columns: repeat(2, 1fr);
       }
     }
+	
+	/* Calculate the header height */
+	header {
+	  position: sticky;
+	  top: 0;
+	}
+
+	/* Apply padding to the main content */
+	main {
+	  padding-top: calc(var(--header-height, 80px));
+	}
+
   </style>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -579,6 +591,16 @@
         document.getElementById("loading-spinner").style.display = "block";
       });
     });
+	
+	
+	function updateHeaderHeight() {
+	  const header = document.querySelector('header');
+	  const headerHeight = header.getBoundingClientRect().height;
+	  document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
+	}
+
+	window.addEventListener('load', updateHeaderHeight);
+	window.addEventListener('resize', updateHeaderHeight);
   </script>
   
   <script>
