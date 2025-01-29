@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meadowbrook Pharmacy MOBILE EDITION</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    section {
+      margin-bottom: 2rem;
+    }
+
+    section h2, section h3 {
+      text-align: center;
+    }
+
+    section h2 {
+      border-bottom: 2px solid #4caf50;
+      padding-bottom: 0.5rem;
+      color: #333;
+    }
+
+    section h3 {
+      color: #222;
+    }
+
+    /* Fixed Header */
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: #f4f4f4;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .header-logo {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .header-logo img {
+      width: 600px;
+      height: auto;
+      max-width: 100%;
+    }
+	
+	/* Updated Header Styles */
+    .fixed-header {
+      padding: 0.5rem 0;
+      min-height: 80px;
+    }
+
+    .header-logo img {
+      width: 300px;
+      margin-top: 0.5rem;
+    }
+
+    /* Hamburger Menu */
+    .hamburger-menu {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1002; /* Above the navbar */
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .hamburger-menu .bar {
+      width: 30px;
+      height: 3px;
+      background: #4caf50;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger-menu.active .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger-menu.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger-menu.active .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      right: -300px; /* Hide off-screen */
+      width: 250px;
+      height: 100%;
+      background: #f4f4f4;
+      box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease;
+      z-index: 1001; /* Above the header */
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .navbar.active {
+      right: 0; /* Slide in */
+    }
+
+    .navbar a {
+      padding: 1rem;
+      text-decoration: none;
+      color: #333;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #ddd;
+      transition: background 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background: #4caf50;
+      color: #fff;
+    }
+
+    /* Compact Business Info */
+    .business-info {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      gap: 0.3rem;
+      margin-top: 0.5rem;
+    }
+
+    .business-info div {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.3rem;
+      align-items: center;
+    }
+
+    .business-info strong {
+      grid-column: 1 / -1;
+      font-size: 1rem;
+    }
+
+    .business-phone a {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .phone-icon {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    /* Hero Section */
+	#hero {
+	  text-align: center;
+	  padding: 15rem 1rem 2rem;
+	  background: linear-gradient(to bottom right, #4caf50, #45a049);
+	  color: #fff;
+	  transition: padding 0.3s ease;
+	}
+
+	#hero h1 {
+	  font-size: 2.5rem;
+	  margin-bottom: 1rem;
+	}
+
+	#hero p {
+	  font-size: 1.2rem;
+	  margin-bottom: 1.5rem;
+	}
+
+	.refill-btn {
+	  display: inline-block;
+	  padding: 1rem 2rem;
+	  background: #fff;
+	  color: #4caf50;
+	  text-decoration: none;
+	  border-radius: 50px;
+	  font-size: 5rem;
+	  font-weight: bold;
+	}
+
+	.refill-btn:hover {
+	  background: #f9f9f9;
+	}
+
+    @media (max-width: 768px) {
+      .refill-btn {
+        font-size: 3rem;
+        padding: 1rem 2rem;
+      }
+      
+      .header-logo img {
+        width: 200px;
+      }
+      
+      .business-info {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Compact Hours Layout */
+    .business-hours {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 0 0.5rem;
+    }
+
+    .business-hours strong {
+      grid-column: 1 / -1;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0;
+    }
+
+    /* Image Gallery */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .image-placeholder {
+      width: 150px;
+      height: 150px;
+      border: 2px solid #ddd;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .service-item {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-item h3 {
+      color: #4caf50;
+      margin-bottom: 0.5rem;
+    }
+
+    .service-item p {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .service-item a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .service-item:hover {
+      background: #4caf50;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Form Styling */
+    form input, form textarea, form button {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #45a049;
+    }
+
+    /* Miscellaneous */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .anchor-offset {
+      position: relative;
+    }
+
+    #anchor-free-delivery {
+      content: '';
+      display: inline-block;
+      height: 500px;
+      margin-top: -1000px;
+      visibility: hidden;
+    }
+
+    .map-container {
+      text-align: center;
+      margin: 2rem auto;
+      padding: 1rem;
+      max-width: 800px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .map-container h2 {
+      margin-bottom: 1rem;
+      color: #4caf50;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .map-frame {
+      overflow: hidden;
+      position: relative;
+      padding-top: 56.25%;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .map-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    /* Scroll-to-Top Button */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-to-top:hover {
+      background: #45a049;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #333;
+      color: #fff;
+    }
+
+    .dark-mode .fixed-header {
+      background: #222;
+    }
+
+    .dark-mode .service-item {
+      background: #444;
+      color: #fff;
+    }
+	
+	.dark-mode .service-item p {
+      color: #fff;
+    }
+	
+	.dark-mode h2 {
+      color: #fff;
+    }
+	
+
+    .dark-mode-toggle {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+	
+	.dark-mode .service-item a{
+      background: #444;
+      color: #fff;
+    }
+	
+	.dark-mode .map-container{
+      background: #444;
+      color: #fff;
+    }
+
+    /* Loading Spinner */
+    .loading-spinner {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #4caf50;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .header-logo img {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .refill-btn {
+        font-size: 3rem;
+        padding: 0.75rem 1.5rem;
+      }
+
+      .navbar a {
+        font-size: 1rem;
+      }
+
+      .business-info {
+        font-size: 1rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburgerMenu = document.querySelector(".hamburger-menu");
+      const navbar = document.querySelector(".navbar");
+      const businessInfo = document.querySelector(".business-info");
+
+      hamburgerMenu.addEventListener("click", () => {
+        hamburgerMenu.classList.toggle("active");
+        navbar.classList.toggle("active");
+        businessInfo.classList.toggle("hidden");
+      });
+
+      const scrollToTopButton = document.getElementById("scrollToTop");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          scrollToTopButton.style.display = "block";
+        } else {
+          scrollToTopButton.style.display = "none";
+        }
+      });
+
+      scrollToTopButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+
+      document.getElementById("darkModeToggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+
+      document.querySelector("form").addEventListener("submit", () => {
+        document.getElementById("loading-spinner").style.display = "block";
+      });
+    });
+  </script>
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+      const MOBILE_SITE_URL = "indexMobile2.html";
+      const DESKTOP_SITE_URL = "indexMB.html";
+
+      // Check local storage for preference
+      const preference = localStorage.getItem("sitePreference");
+
+      // Detect mobile user agents
+      const isMobileUserAgent = /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+
+      // Handle redirection logic
+      if (!preference) {
+        if (isMobileUserAgent && location.pathname !== `/${MOBILE_SITE_URL}`) {
+          // Redirect to mobile site if no preference is set and user agent is mobile
+          location.href = MOBILE_SITE_URL;
+        }
+      } else if (preference === "mobile" && location.pathname !== `/${MOBILE_SITE_URL}`) {
+        location.href = MOBILE_SITE_URL;
+      } else if (preference === "desktop" && location.pathname !== `/${DESKTOP_SITE_URL}`) {
+        location.href = DESKTOP_SITE_URL;
+      }
+
+      // Event listeners for buttons
+      const mobileButton = document.getElementById("useMobile");
+      const desktopButton = document.getElementById("useDesktop");
+
+      if (mobileButton) {
+        mobileButton.addEventListener("click", () => {
+          localStorage.setItem("sitePreference", "mobile");
+          location.href = MOBILE_SITE_URL;
+        });
+      }
+
+      if (desktopButton) {
+        desktopButton.addEventListener("click", () => {
+          localStorage.setItem("sitePreference", "desktop");
+          location.href = DESKTOP_SITE_URL;
+        });
+      }
+    });
+	</script>
+	
+</head>
+<body>
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/indexMobile2.html">Home</a>
+    <a href="/aboutMobile.html">About Us</a>
+    <a href="/servicesMobile.html">Products and Services</a>
+    <a href="/contactMobile.html">Contact</a>
+  </nav>
+
+  <!-- Fixed Header -->
+   <div class="fixed-header">
+    <div class="header-content">
+      <div class="header-logo">
+        <img src="http://meadowbrookpharmacytx.com/fassets/images/meadowbrook-logo.png" alt="Meadowbrook Pharmacy Logo">
+      </div>
+      <!-- Business Info -->
+      <div class="business-info">
+        <div class="business-hours">
+          <strong>Hours</strong>
+          <span>Mon-Fri:</span><span>8 AM - 7 PM</span>
+          <span>Sat:</span><span>9 AM - 2 PM</span>
+          <span>Sun:</span><span>Closed</span>
+        </div>
+        <div>
+          <strong>Address</strong>
+          <a href="https://www.google.com/maps?q=6624+Meadowbrook+Dr,+Fort+Worth,+TX+76112" target="_blank">
+            6624 Meadowbrook Dr<br>Fort Worth, TX 76112
+          </a>
+        </div>
+        <div class="business-phone">
+          <a href="tel:+18174516900">
+            <svg class="phone-icon" viewBox="0 0 24 24">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+            (817) 451-6900
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero">
+      <a href="https://4553346.winrxrefill.com/" class="refill-btn">REFILL NOW</a>
+      <h1>Your Partner in Health</h1>
+      <p>We provide personalized care, prescription refills, and custom compounding to keep you healthy and happy.</p>
+    </section>
+    <div align="center">
+      <button id="useDesktop" class="button button1">Switch to Desktop Site</button>
+    </div>
+    <section id="services" class="container">
+      <h2>Our Services</h2>
+      <div class="services-grid">
+        <div class="service-item">
+          <a href="https://4553346.winrxrefill.com/">
+            <h3>Prescription Refills</h3>
+            <p>Convenient online and in-store options.</p>
+          </a>
+        </div>
+        <div class="service-item">
+          <a href="#anchor-free-delivery">
+            <h3>Free Delivery</h3>
+            <p>Get your medications delivered to your door.</p>
+          </a>
+        </div>
+        <div class="service-item">
+          <a href="/compoundingMobile.html">
+            <h3>Custom Compounding</h3>
+            <p>Medications tailored to your unique needs.</p>
+          </a>
+        </div>
+        <div class="service-item">
+          <h3>Medication Consultations</h3>
+          <p>Expert advice to ensure the best care.</p>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="container">
+      <h2>About Us</h2>
+      <p>
+        Meadowbrook Pharmacy is an independent pharmacy in the DFW area, dedicated to providing personalized care, fast service, and the best prices. Our community-first approach ensures you and your family receive top-quality healthcare solutions tailored to your needs.
+      </p>
+      <div class="image-gallery">
+        <div class="image-placeholder" style="background-image: url('pharmacist.jpg');" loading="lazy"></div>
+        <div class="image-placeholder" style="background-image: url('pharmacistteam.jpg');" loading="lazy"></div>
+        <div class="image-placeholder" style="background-image: url('insidepic.jpg');" loading="lazy"></div>
+        <div class="image-placeholder" style="background-image: url('outsidepic.jpg');" loading="lazy"></div>
+      </div>
+      <a href="aboutMobile.html" class="btn">Learn More</a>
+    </section>
+    <section id="refills" class="container">
+      <h2>Online Prescription Refills</h2>
+      <p>Refilling your prescriptions has never been easier. Use our secure online portal to manage your refills quickly and conveniently.</p>
+      <a href="https://4553346.winrxrefill.com/" class="btn">Refill Now</a>
+    </section>
+    <section id="anchor-free-delivery"></section>
+    <section id="free-delivery" class="container">
+      <h2>Free Delivery</h2>
+      <p>
+        Too busy or not feeling well enough to visit us in-store? Can’t arrange for a ride or need to deliver medications to your family members? No problem—we’ve got you covered.
+      </p>
+      <p>
+        Ask our pharmacy about our Free Delivery service. We’ll deliver prescription medications to your home or workplace at no charge.
+      </p>
+      <p>
+        Our Free Delivery service is truly free. We don’t bill your insurance, any agency, or you. It’s just our way of showing that we care.
+      </p>
+    </section>
+    <section id="compounding" class="container">
+      <h2>Custom Compounding</h2>
+      <p>We specialize in custom compounding to create medications tailored to your specific needs, whether for unique dosages, allergen-free alternatives, or flavoring options for children.</p>
+      <a href="/compoundingMobile.html" class="btn" target="_blank">Learn More</a>
+    </section>
+    <section id="contact" class="container">
+      <h2>Contact Us</h2>
+      <h3>We Care About You</h3>
+      <p>
+        At Meadowbrook Pharmacy, your health and satisfaction are our top priorities. Whether you have a question about your prescriptions, need help with refills, or want to explore our services, we're just a message away. Our team is committed to providing you with prompt, friendly, and personalized assistance.
+      </p>
+      <p>Please complete the form below to get in touch with us. We look forward to serving you!</p>
+      <form action="https://formspree.io/f/xdkolzzq" method="POST">
+        <label>
+          Your email:
+          <input type="email" name="email" placeholder="Enter your email" required>
+        </label>
+        <label>
+          Your name:
+          <textarea name="name" placeholder="Enter your name" required></textarea>
+        </label>
+        <label>
+          What can we help you with?
+          <textarea name="message" placeholder="Enter your message" required></textarea>
+        </label>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+    <div class="map-container">
+      <h2>Our Location</h2>
+      <div class="map-frame">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3355.7557419379905!2d-97.215256!3d32.745675999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e7bae4229e8c7%3A0x4a0d7a7730df168c!2s6624%20Meadowbrook%20Dr%2C%20Fort%20Worth%2C%20TX%2076112!5e0!3m2!1sen!2sus!4v1732687046179!5m2!1sen!2sus"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+    <section id="insurance" class="container">
+      <h2>Medicare and Insurance</h2>
+      <p>We accept most major insurance plans, including Medicare. Our team is here to assist you with claims and coverage questions.</p>
+      <ul>
+        <li>Medicare Part D</li>
+        <li>Private Insurance Plans</li>
+        <li>Flexible Spending Accounts</li>
+      </ul>
+      <p>Not sure if your plan is accepted? <a href="contactMobile.html">Contact us</a> for assistance.</p>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Meadowbrook Pharmacy & MoAbTech. All rights reserved.</p>
+    </div>
+  </footer>
+  <button id="scrollToTop" class="scroll-to-top">↑</button>
+  <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+  <div id="loading-spinner" class="loading-spinner"></div>
+</body>
+</html>
