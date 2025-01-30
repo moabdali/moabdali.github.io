@@ -228,6 +228,7 @@
         gap: 0.5rem;
       }
 
+		/*
       .business-info {
         text-align: center;
         border-left: none;
@@ -235,7 +236,24 @@
         border-top: 2px solid #ddd;
         padding-top: 0.5rem;
         width: 100%;
-      }
+      }*/
+	  
+	  /* Business Info */
+	.business-info {
+	  display: flex;
+	  flex-direction: row;
+	  gap: 0.5rem;
+	  text-align: center;
+	  font-size: 1.5rem;
+	  transition: max-height 0.3s ease, opacity 0.3s ease;
+	  max-height: 500px;
+	  overflow: hidden;
+	  opacity: 1;
+	  border: 1px solid #ccc;
+	  border-radius: 8px;
+	  padding: 1rem;
+	  background: #f9f9f9;
+	}
 
       .header-logo img {
         width: 200px;
@@ -468,10 +486,6 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 	
-	.dark-mode .hero {
-		
-	}
-	
 	.dark-mode .service-item a{
       background: #444;
       color: #fff;
@@ -531,7 +545,7 @@
       }
 
       .business-info {
-        font-size: 1rem;
+        font-size: .75rem;
       }
 
       .services-grid {
@@ -682,14 +696,15 @@
           <a href="https://www.google.com/maps?q=6624+Meadowbrook+Dr,+Fort+Worth,+TX+76112" target="_blank">
             6624 Meadowbrook Dr<br>Fort Worth, TX 76112
           </a>
-        </div>
-        <div class="business-phone">
+        
+		  <br>
           <a href="tel:+18174516900">
             <svg class="phone-icon" viewBox="0 0 24 24">
               <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
             </svg>
             (817) 451-6900
           </a>
+		  <br>Fax: 817-451-6901
         </div>
       </div>
     </div>
