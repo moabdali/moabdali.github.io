@@ -2,113 +2,251 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0">
-    <title>Moe's Websites</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moe's Portfolio</title>
     <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: #f8f9fa;
             color: #333;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        .container {
-            max-width: 700px;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 2.2em;
-            margin-bottom: 30px;
-            color: #3498db;
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .link-button {
-            display: inline-block;
-            margin: 15px 0;
-            padding: 12px 25px;
-            background-color: #3498db;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1.1em;
-            transition: background-color 0.3s;
-        }
-
-        .link-button:hover {
-            background-color: #2980b9;
-        }
-
-        .description {
-            margin-top: 15px;
-            text-align: left;
-            font-size: 1em;
+            padding: 40px 20px;
             line-height: 1.6;
         }
 
-        .subheading {
-            font-weight: bold;
-            color: #333;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            font-size: 2.8em;
+            margin: 0 0 40px;
+            letter-spacing: -0.03em;
+        }
+
+        .featured-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .project-card {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.2s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section {
+            margin: 50px 0;
+        }
+
+        .link-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin: 15px 0;
+        }
+
+        .primary-btn {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #2980b9;
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .source-btn {
+            background: var(--accent);
+            color: white;
+        }
+
+        .source-btn:hover {
+            background: #c0392b;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+
+        .tech-badge {
+            display: inline-block;
+            background: rgba(52, 152, 219, 0.1);
+            color: var(--secondary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin: 5px 3px;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
             margin-top: 20px;
-            font-size: 1.1em;
         }
 
-        ul {
-            list-style-type: disc;
-            margin-left: 20px;
-            padding-left: 0;
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.8em;
         }
 
-        li {
-            margin-bottom: 8px;
+        h3 {
+            color: var(--primary);
+            margin-top: 0;
+            font-size: 1.4em;
         }
 
         hr {
             border: none;
-            height: 1px;
-            background-color: #e0e0e0;
-            margin: 40px 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+            margin: 50px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 15px 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+            padding-left: 1.5em;
+            position: relative;
+        }
+
+        li:before {
+            content: "•";
+            color: var(--secondary);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .source-list {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        .source-list a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .source-list a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                border-radius: 0;
+            }
+            
+            h1 {
+                font-size: 2.2em;
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Welcome to Moe's Websites</h1>
+        <h1>Moe's Web Development Projects</h1>
         
+        <!-- Featured Projects Section -->
+        <div class="featured-section">
+            <div class="project-card">
+                <h2>Limousine Rental Website</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">HTML</span>
+                    <span class="tech-badge">CSS</span>
+                    <span class="tech-badge">JavaScript</span>
+                </div>
+                <p>Responsive client website for luxury transportation services.</p>
+                <div class="button-group">
+                    <a href="https://addisonlimowebsite.github.io/" class="link-button primary-btn">Desktop Version</a>
+                    <a href="https://addisonlimowebsite.github.io/indexMobile.html" class="link-button primary-btn">Mobile Version</a>
+                    <a href="https://github.com/addisonlimowebsite" class="link-button source-btn">View Source</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h2>Pharmacy Website</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">Vue.js</span>
+                    <span class="tech-badge">Firebase</span>
+                    <span class="tech-badge">Chart.js</span>
+                </div>
+                <p>Modern pharmacy platform with dual-view responsiveness.</p>
+                <div class="button-group">
+                    <a href="https://moabdali.github.io/indexMB.html" class="link-button primary-btn">Desktop Version</a>
+                    <a href="https://moabdali.github.io/indexMobile2.html" class="link-button primary-btn">Mobile Version</a>
+                    <a href="https://github.com/moabdali/moabdali.github.io" class="link-button source-btn">View Source</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
         <!-- Hangman Extreme Section -->
         <div class="section">
-            <a href="hangman.html" class="link-button">Hangman Extreme</a>
-    
-            <div class="description">
-                <p><strong>Hangman Extreme</strong> brings a challenging twist to the classic hangman game. In this version:</p>
-                <ul>
-                    <li>Guess 5 words simultaneously</li>
-                    <li>Only 3 lives available</li>
-                    <li>Word lengths are hidden, but you’ll see the number of letters between the first and last correctly guessed letters</li>
-                </ul>
+            <h2>Hangman Extreme</h2>
+            <div class="button-group">
+                <a href="hangman.html" class="link-button primary-btn">Play Now</a>
+                <a href="https://github.com/moabdali/moabdali.github.io" class="link-button source-btn">GitHub Repo</a>
+            </div>
+            
+            <div class="highlight-grid">
+                <div class="project-card">
+                    <h3>Game Features</h3>
+                    <ul>
+                        <li>Simultaneous 5-word guessing</li>
+                        <li>Limited 3-life system</li>
+                        <li>Dynamic letter range display</li>
+                    </ul>
+                </div>
                 
-                <p class="subheading">Highlights:</p>
-                <ul>
-                    <li>Built with JavaScript, CSS, and HTML</li>
-                    <li>Uses the Heroku API for random word selection, keeping the game unpredictable</li>
-                    <li>Integrated with DictionaryAPI to display definitions for guessed words</li>
-                </ul>
+                <div class="project-card">
+                    <h3>Technical Stack</h3>
+                    <ul>
+                        <li>JavaScript ES6+</li>
+                        <li>Heroku API integration</li>
+                        <li>DictionaryAPI implementation</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -116,22 +254,31 @@
 
         <!-- Games Shelves Section -->
         <div class="section">
-            <a href="https://moabdali1.pythonanywhere.com" class="link-button">Games Shelves</a>
-    
-            <div class="description">
-                <p><strong>Games Shelves</strong> helps you effortlessly organize and search your board game collection. Find games based on name, location, or category and streamline your inventory:</p>
-                <ul>
-                    <li>Quickly locate games by scanning or typing barcodes</li>
-                    <li>Switch between compact and detailed views for additional information</li>
-                    <li>Hover over columns for quick tooltips with helpful information</li>
-                </ul>
-
-                <p class="subheading">Highlights:</p>
-                <ul>
-                    <li>Built with JavaScript, CSS, and HTML</li>
-                    <li>Uses SQLite for efficient data storage</li>
-                    <li>Python and Flask backend powers the web application (using PythonAnywhere as the server)</li>
-                </ul>
+            <h2>Games Shelves</h2>
+            <div class="button-group">
+                <a href="https://moabdali1.pythonanywhere.com" class="link-button primary-btn">Explore Collection</a>
+                <!-- <a href="YOUR_GAMES_SOURCE" class="link-button source-btn">Source Code</a> !-->
+            </div>
+            
+            <div class="highlight-grid">
+                <div class="project-card">
+                    <h3>Inventory Features</h3>
+                    <ul>
+                        <li>Barcode scanning/typing search</li>
+                        <li>Compact/detail view toggle</li>
+                        <li>Interactive column tooltips</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Technical Stack</h3>
+                    <ul>
+                        <li>Python/Flask backend</li>
+                        <li>SQLite database</li>
+                        <li>JavaScript/HTML/CSS frontend</li>
+                        <li>PythonAnywhere hosting</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -139,28 +286,34 @@
 
         <!-- Meet in the Middle Section -->
         <div class="section">
-            <a href="https://meetinthemiddle.pythonanywhere.com" class="link-button">Meet in the Middle</a>
-        
-            <div class="description">
-                <p><strong>Meet in the Middle</strong> helps you find the optimal meeting point between multiple people based on starting locations.</p>
-                <ul>
-                    <li>Supports up to 10 starting points</li>
-                    <li>Displays a map with the starting points and calculated meeting location</li>
-                    <li>Shows points of interest near the meeting point within an adjustable range</li>
-                    <li>Uses robust error checking for validating addresses</li>
-                </ul>
-        
-                <p class="subheading">Highlights:</p>
-                <ul>
-                    <li>Developed with JavaScript, CSS, and HTML</li>
-                    <li>Integrates Google Places API for points of interest</li>
-                    <li>Uses Google Netcoding for converting places to/from longitude/latitude values for mathematical purposes</li>
-                    <li>Backend powered by Python and Flask (using PythonAnywhere as the server)</li>
-                </ul>
+            <h2>Meet in the Middle</h2>
+            <div class="button-group">
+                <a href="https://meetinthemiddle.pythonanywhere.com" class="link-button primary-btn">Try Location Finder</a>
+                <!-- <a href="YOUR_MEET_SOURCE" class="link-button source-btn">Source Code</a> -->
+            </div>
+            
+            <div class="highlight-grid">
+                <div class="project-card">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Supports 10 locations</li>
+                        <li>Interactive map display</li>
+                        <li>Adjustable POI radius</li>
+                        <li>Address validation system</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Technical Stack</h3>
+                    <ul>
+                        <li>Google Places API</li>
+                        <li>Google Geocoding</li>
+                        <li>Python/Flask backend</li>
+                        <li>JavaScript/HTML/CSS frontend</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        
     </div>
-
 </body>
 </html>
