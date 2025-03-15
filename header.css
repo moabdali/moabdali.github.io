@@ -1,0 +1,217 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Fixed Header */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: #f4f4f4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 90%;
+    max-width: 1200px;
+}
+
+.header-logo {
+    flex: 0 0 150px;
+}
+
+.header-logo img {
+    width: 100%;
+    height: auto;
+    max-width: 150px;
+}
+
+/* Updated Header Styles */
+.fixed-header {
+    padding: 0.5rem 0;
+    min-height: 80px;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1002;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hamburger-menu .bar {
+    width: 30px;
+    height: 3px;
+    background: #4caf50;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 250px;
+    height: 100%;
+    background: #f4f4f4;
+    box-shadow: -2px 0 4px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.navbar.active {
+    right: 0;
+}
+
+.navbar a {
+    padding: 1rem;
+    text-decoration: none;
+    color: #333;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+    transition: background 0.3s ease;
+}
+
+.navbar a:hover {
+    background: #4caf50;
+    color: #fff;
+}
+
+/* Compact Business Info */
+      /* Business Info */
+      .business-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 0.5rem;
+        width: 100%;
+        max-width: 400px;
+        font-size: 0.75rem;
+        line-height: 1.3;
+      }
+
+      .business-hours {
+        display: grid;
+        grid-template-columns: auto auto;
+        gap: 0 0.3rem;
+      }
+
+      .business-info strong {
+        display: block;
+        font-size: 0.8rem;
+        margin-bottom: 0.2rem;
+        color: #444;
+      }
+
+      .business-phone a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        white-space: nowrap;
+      }
+	  
+/* Compact Hours Layout */
+  .business-hours {
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	gap: 0 0.5rem;
+  }
+
+  .business-hours strong {
+	grid-column: 1 / -1;
+  }
+  
+.phone-icon {
+        width: 14px;
+        height: 14px;
+        flex-shrink: 0;
+      }
+	  
+/* Media Query for Smaller Screens */
+@media (max-width: 768px) {
+	/* Business Info */
+        .business-info {
+          display: flex;
+          flex-direction: row;
+          gap: 0.5rem;
+          text-align: center;
+          transition: max-height 0.3s ease, opacity 0.3s ease;
+          max-height: 500px;
+          overflow: hidden;
+          opacity: 1;
+          border: 1px solid #ccc;
+          border-radius: 8px;
+          padding: .5rem;
+          background: #f9f9f9;
+          grid-template-columns: 1fr;
+          font-size: 0.7rem;
+          font-size: 0.9rem;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1rem;
+        }
+	.business-hours {
+          grid-template-columns: repeat(2, auto);
+        }
+	.business-info {
+          font-size: .75rem;
+        }
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .header-logo img {
+        width: 200px;
+    }
+
+    .header-logo {
+        flex: 0 0 80px;
+    }
+
+    .header-logo img {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .navbar a {
+        font-size: 1rem;
+    }
+}
